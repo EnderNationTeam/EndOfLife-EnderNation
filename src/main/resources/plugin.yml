@@ -1,0 +1,4 @@
+name: EndOfLife-EN
+version: '${project.version}'
+main: de.mxscha.endernationendoflife.EndoflifeCore
+api-version: 1.19
