@@ -25,7 +25,7 @@ public final class EndoflifeCore extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        de.mxscha.endoflife.Register.init(instance);
+        Register.init(instance);
         backpackManager = new BackpackManager();
         moneyAPI = new MoneyAPI();
         jobAPI = new JobAPI();

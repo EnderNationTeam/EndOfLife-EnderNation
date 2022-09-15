@@ -13,7 +13,6 @@ public class BackpackManager {
 
     public BackpackManager() {
         map = new HashMap<>();
-
         load();
     }
 

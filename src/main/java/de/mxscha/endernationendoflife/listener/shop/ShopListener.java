@@ -1,11 +1,8 @@
 package de.mxscha.endernationendoflife.listener.shop;
 
-import de.mxscha.endoflife.EndoflifeCore;
-import de.mxscha.endoflife.utils.ItemCreator;
-import de.mxscha.endoflife.utils.MessageManager;
-import de.mxscha.endoflife.utils.money.MoneyAPI;
-import de.mxscha.endoflife.utils.scoreboard.DefaultScoreboard;
-import de.mxscha.endoflife.utils.skulls.Skull;
+import de.mxscha.endernationendoflife.EndoflifeCore;
+import de.mxscha.endernationendoflife.utils.ItemCreator;
+import de.mxscha.endernationendoflife.utils.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
