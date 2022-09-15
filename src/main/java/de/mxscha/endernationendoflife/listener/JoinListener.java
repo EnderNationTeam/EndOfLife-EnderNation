@@ -14,7 +14,7 @@ public class JoinListener implements Listener {
         Player player = event.getPlayer();
         addToMoneySystem(player);
         addToJobSystem(player);
-        new DefaultScoreboard(player);
+       // new DefaultScoreboard(player);
         event.setJoinMessage(null);
     }
 
