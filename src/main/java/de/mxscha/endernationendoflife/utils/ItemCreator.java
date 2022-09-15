@@ -41,6 +41,11 @@ public class ItemCreator {
         this(material, (short)0);
     }
 
+    public ItemCreator setCustomModelData(Integer modelData) {
+        this.itemMeta.setCustomModelData(modelData);
+        return this;
+    }
+
     // adding an Enchantment to your Item
     public ItemCreator addEnchantment(Enchantment enchantment, int amount, boolean test) {
         this.itemMeta.addEnchant(enchantment, amount, test);

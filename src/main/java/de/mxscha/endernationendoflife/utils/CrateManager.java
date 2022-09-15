@@ -1,6 +1,7 @@
 package de.mxscha.endernationendoflife.utils;
 
 import de.mxscha.endernationendoflife.EndoflifeCore;
+import de.mxscha.endernationendoflife.listener.CrateListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -18,33 +19,27 @@ public class CrateManager {
 
     private final Player player;
     private static Inventory inventory = null;
-    private final List<ItemStack> items;
+    private List<ItemStack> items;
     private int count;
     private BukkitTask bukkitTask;
-    private HashMap<Player, BukkitTask> list = new HashMap<>();
 
-    public CrateManager(Player player, Inventory inventory, List<ItemStack> items, String inventoryName) {
+    public CrateManager(Player player, List<ItemStack> items, String inventoryName) {
         this.player = player;
-        CrateManager.inventory = inventory;
+        CrateManager.inventory = getDefaultInventory(inventoryName);
+        player.openInventory(inventory);
         this.items = items;
-        if (canOpen(player)) {
-            getDefaultInventory(inventoryName);
-            this.bukkitTask = EndoflifeCore.getInstance().getServer().getScheduler().runTaskTimerAsynchronously(EndoflifeCore.getInstance(), new Runnable() {
-                @Override
-                public void run() {
-                    ItemStack nextItem = items.get(new Random().nextInt(items.size()));
-                    for (int i = 29; i != 35; i++)
-                        moveItem(i);
-                    inventory.setItem(34, nextItem);
-                    player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 2);
-                    count++;
-                    checkEnd();
-                }
-            }, 2L, 3L);
-            list.put(player, this.bukkitTask);
-        } else {
-            player.sendMessage(MessageManager.Prefix + "§cBitte nur eine Truhe gleichzeitig öffnen!");
-        }
+        this.bukkitTask = EndoflifeCore.getInstance().getServer().getScheduler().runTaskTimerAsynchronously(EndoflifeCore.getInstance(), new Runnable() {
+            @Override
+            public void run() {
+                ItemStack nextItem = items.get(new Random().nextInt(items.size()));
+                for (int i = 29; i != 35; i++)
+                    moveItem(i);
+                inventory.setItem(34, nextItem);
+                player.playSound(player.getLocation(), Sound.UI_BUTTON_CLICK, 0.5f, 2);
+                count++;
+                checkEnd();
+            }
+        }, 2L, 3L);
     }
 
     private void checkEnd() {
@@ -56,16 +51,17 @@ public class CrateManager {
         greenGlass(inventory);
         player.getInventory().addItem(finalItem);
         closeInventory(player);
+        CrateListener.getList().remove(player);
     }
 
     private void closeInventory(Player player) {
         new BukkitRunnable() {
             @Override
             public void run() {
-                if(player.getOpenInventory() == CrateManager.inventory)
-                player.closeInventory();
+                if (player.getOpenInventory() == CrateManager.inventory)
+                    player.closeInventory();
             }
-        }.runTaskLater(EndoflifeCore.getInstance(), 20*3);
+        }.runTaskLater(EndoflifeCore.getInstance(), 20 * 3);
     }
 
     private void greenGlass(Inventory inventory) {
@@ -86,7 +82,7 @@ public class CrateManager {
     }
 
     private Inventory getDefaultInventory(String displayName) {
-        inventory = Bukkit.createInventory(null, 9*6, displayName);
+        Inventory inventory = Bukkit.createInventory(null, 9 * 6, displayName);
         grayGlass(inventory);
         inventory.setItem(22, new ItemCreator(Material.HOPPER).setName("§8● §7Dein Gewinn§8:").toItemStack());
         return inventory;
@@ -106,11 +102,7 @@ public class CrateManager {
 
     private void moveItem(int slot) {
         if (inventory.getItem(slot) != null && inventory.getItem(slot).getType() != Material.LIME_STAINED_GLASS_PANE)
-            inventory.setItem(slot-1, inventory.getItem(slot));
-    }
-
-    private boolean canOpen(Player player) {
-        return list.containsKey(player);
+            inventory.setItem(slot - 1, inventory.getItem(slot));
     }
 
     public static Inventory getInventory() {

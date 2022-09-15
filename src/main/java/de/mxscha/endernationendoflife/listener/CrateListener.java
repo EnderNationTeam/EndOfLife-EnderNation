@@ -18,13 +18,14 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CrateListener implements Listener {
 
-    private static Inventory inventory;
     List<ItemStack> items;
+    private static HashMap<Player, Boolean> list = new HashMap<>();
 
     @EventHandler
     public void onInteract(PlayerInteractEvent event) {
@@ -41,96 +42,128 @@ public class CrateListener implements Listener {
                     if (player.getInventory().getItemInMainHand().getType() == Material.AIR || !player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§8§lKohle Key")) {
                         player.sendMessage(MessageManager.Prefix + "§cNutze einen §0§lKohle Key §cum diese Box zu öffnen!");
                     } else {
-                        items = new ArrayList<>();
-                        items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
-                        items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
-                        items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
-                        removeKey(player, "coal");
-                        new CrateManager(player, inventory, items, "§8● §8§lKohle Box");
+                        if (canOpen(player)) {
+                            items = new ArrayList<>();
+                            items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
+                            items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
+                            items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
+                            removeKey(player, "coal");
+                            new CrateManager(player, items, "§8● §8§lKohle Box");
+                            list.put(player, true);
+                        } else
+                            player.sendMessage(MessageManager.Prefix + "§cBitte öffne nur eine Kiste gleichzeitig!");
                     }
                 }
                 if (underCrate.getType() == Material.WAXED_COPPER_BLOCK) {
                     if (player.getInventory().getItemInMainHand().getType() == Material.AIR || !player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§c§lKupfer Key")) {
                         player.sendMessage(MessageManager.Prefix + "§cNutze einen §c§lKupfer Key §cum diese Box zu öffnen!");
                     } else {
-                        items = new ArrayList<>();
-                        items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
-                        items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
-                        items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
-                        removeKey(player, "copper");
-                        new CrateManager(player, inventory, items, "§8● §c§lKupfer Box");
+                        if (canOpen(player)) {
+                            items = new ArrayList<>();
+                            items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
+                            items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
+                            items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
+                            removeKey(player, "copper");
+                            new CrateManager(player, items, "§8● §c§lKupfer Box");
+                            list.put(player, true);
+                        } else
+                            player.sendMessage(MessageManager.Prefix + "§cBitte öffne nur eine Kiste gleichzeitig!");
                     }
                 }
                 if (underCrate.getType() == Material.IRON_BLOCK) {
                     if (player.getInventory().getItemInMainHand().getType() == Material.AIR || !player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§f§lEisen Key")) {
                         player.sendMessage(MessageManager.Prefix + "§cNutze einen §f§lEisen Key §cum diese Box zu öffnen!");
                     } else {
-                        items = new ArrayList<>();
-                        items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
-                        items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
-                        items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
-                        removeKey(player, "iron");
-                        new CrateManager(player, inventory, items, "§8● §f§lEisen Box");
+                        if (canOpen(player)) {
+                            items = new ArrayList<>();
+                            items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
+                            items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
+                            items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
+                            removeKey(player, "iron");
+                            new CrateManager(player, items, "§8● §f§lEisen Box");
+                            list.put(player, true);
+                        } else
+                            player.sendMessage(MessageManager.Prefix + "§cBitte öffne nur eine Kiste gleichzeitig!");
                     }
                 }
                 if (underCrate.getType() == Material.GOLD_BLOCK) {
                     if (player.getInventory().getItemInMainHand().getType() == Material.AIR || !player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§6§lGold Key")) {
                         player.sendMessage(MessageManager.Prefix + "§cNutze einen §6§lGold Key §cum diese Box zu öffnen!");
                     } else {
-                        items = new ArrayList<>();
-                        items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
-                        items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
-                        items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
-                        removeKey(player, "gold");
-                        new CrateManager(player, inventory, items, "§8● §6§lGold Box");
+                        if (canOpen(player)) {
+                            items = new ArrayList<>();
+                            items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
+                            items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
+                            items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
+                            removeKey(player, "gold");
+                            new CrateManager(player, items, "§8● §6§lGold Box");
+                            list.put(player, true);
+                        } else
+                            player.sendMessage(MessageManager.Prefix + "§cBitte öffne nur eine Kiste gleichzeitig!");
                     }
                 }
                 if (underCrate.getType() == Material.DIAMOND_BLOCK) {
                     if (player.getInventory().getItemInMainHand().getType() == Material.AIR || !player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§b§lDiamand Key")) {
                         player.sendMessage(MessageManager.Prefix + "§cNutze einen §b§lDiamand Key §cum diese Box zu öffnen!");
                     } else {
-                        items = new ArrayList<>();
-                        items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
-                        items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
-                        items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
-                        removeKey(player, "diamond");
-                        new CrateManager(player, inventory, items, "§8● §b§lDiamand Box");
+                        if (canOpen(player)) {
+                            items = new ArrayList<>();
+                            items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
+                            items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
+                            items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
+                            removeKey(player, "diamond");
+                            new CrateManager(player, items, "§8● §b§lDiamand Box");
+                            list.put(player, true);
+                        } else
+                            player.sendMessage(MessageManager.Prefix + "§cBitte öffne nur eine Kiste gleichzeitig!");
                     }
                 }
                 if (underCrate.getType() == Material.EMERALD_BLOCK) {
                     if (player.getInventory().getItemInMainHand().getType() == Material.AIR || !player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§a§lSmaragt Key")) {
                         player.sendMessage(MessageManager.Prefix + "§cNutze einen §a§lSmaragt Key §cum diese Box zu öffnen!");
                     } else {
-                        items = new ArrayList<>();
-                        items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
-                        items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
-                        items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
-                        removeKey(player, "emerald");
-                        new CrateManager(player, inventory, items, "§8● §a§lSmaragt Box");
+                        if (canOpen(player)) {
+                            items = new ArrayList<>();
+                            items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
+                            items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
+                            items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
+                            removeKey(player, "emerald");
+                            new CrateManager(player, items, "§8● §a§lSmaragt Box");
+                            list.put(player, true);
+                        } else
+                            player.sendMessage(MessageManager.Prefix + "§cBitte öffne nur eine Kiste gleichzeitig!");
                     }
                 }
                 if (underCrate.getType() == Material.AMETHYST_BLOCK) {
                     if (player.getInventory().getItemInMainHand().getType() == Material.AIR || !player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§d§lAmethyst Key")) {
                         player.sendMessage(MessageManager.Prefix + "§cNutze einen §d§lAmethyst Key §cum diese Box zu öffnen!");
                     } else {
-                        items = new ArrayList<>();
-                        items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
-                        items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
-                        items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
-                        removeKey(player, "amethyst");
-                        new CrateManager(player, inventory, items, "§8● §d§lAmethyst Box");
+                        if (canOpen(player)) {
+                            items = new ArrayList<>();
+                            items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
+                            items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
+                            items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
+                            removeKey(player, "amethyst");
+                            new CrateManager(player, items, "§8● §d§lAmethyst Box");
+                            list.put(player, true);
+                        } else
+                            player.sendMessage(MessageManager.Prefix + "§cBitte öffne nur eine Kiste gleichzeitig!");
                     }
                 }
                 if (underCrate.getType() == Material.NETHERITE_BLOCK) {
                     if (player.getInventory().getItemInMainHand().getType() == Material.AIR || !player.getInventory().getItemInMainHand().getItemMeta().getDisplayName().equals("§8§lNetherit Key")) {
                         player.sendMessage(MessageManager.Prefix + "§cNutze einen §8§lNetherit Key §cum diese Box zu öffnen!");
                     } else {
-                        items = new ArrayList<>();
-                        items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
-                        items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
-                        items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
-                        removeKey(player, "netherite");
-                        new CrateManager(player, inventory, items, "§8● §8§lNetherit Box");
+                        if (canOpen(player)) {
+                            items = new ArrayList<>();
+                            items.add(new ItemCreator(Material.DIAMOND).setName("1").toItemStack());
+                            items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
+                            items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
+                            removeKey(player, "netherite");
+                            new CrateManager(player, items, "§8● §8§lNetherit Box");
+                            list.put(player, true);
+                        } else
+                            player.sendMessage(MessageManager.Prefix + "§cBitte öffne nur eine Kiste gleichzeitig!");
                     }
                 }
             }
@@ -166,6 +199,11 @@ public class CrateListener implements Listener {
     }
 
 
+    private boolean canOpen(Player player) {
+        return !list.containsKey(player);
+    }
 
-
+    public static HashMap<Player, Boolean> getList() {
+        return list;
+    }
 }
