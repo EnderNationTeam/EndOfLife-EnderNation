@@ -46,8 +46,7 @@ public class CrateListener implements Listener {
                         items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
                         items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
                         removeKey(player, "coal");
-                        player.openInventory(getDefaultInventory("§8● §8§lKohle Box"));
-                        new CrateManager(player, inventory, items);
+                        new CrateManager(player, inventory, items, "§8● §8§lKohle Box");
                     }
                 }
                 if (underCrate.getType() == Material.WAXED_COPPER_BLOCK) {
@@ -59,8 +58,7 @@ public class CrateListener implements Listener {
                         items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
                         items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
                         removeKey(player, "copper");
-                        player.openInventory(getDefaultInventory("§8● §c§lKupfer Box"));
-                        new CrateManager(player, inventory, items);
+                        new CrateManager(player, inventory, items, "§8● §c§lKupfer Box");
                     }
                 }
                 if (underCrate.getType() == Material.IRON_BLOCK) {
@@ -72,8 +70,7 @@ public class CrateListener implements Listener {
                         items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
                         items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
                         removeKey(player, "iron");
-                        player.openInventory(getDefaultInventory("§8● §f§lEisen Box"));
-                        new CrateManager(player, inventory, items);
+                        new CrateManager(player, inventory, items, "§8● §f§lEisen Box");
                     }
                 }
                 if (underCrate.getType() == Material.GOLD_BLOCK) {
@@ -85,8 +82,7 @@ public class CrateListener implements Listener {
                         items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
                         items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
                         removeKey(player, "gold");
-                        player.openInventory(getDefaultInventory("§8● §6§lGold Box"));
-                        new CrateManager(player, inventory, items);
+                        new CrateManager(player, inventory, items, "§8● §6§lGold Box");
                     }
                 }
                 if (underCrate.getType() == Material.DIAMOND_BLOCK) {
@@ -98,8 +94,7 @@ public class CrateListener implements Listener {
                         items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
                         items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
                         removeKey(player, "diamond");
-                        player.openInventory(getDefaultInventory("§8● §b§lDiamand Box"));
-                        new CrateManager(player, inventory, items);
+                        new CrateManager(player, inventory, items, "§8● §b§lDiamand Box");
                     }
                 }
                 if (underCrate.getType() == Material.EMERALD_BLOCK) {
@@ -111,8 +106,7 @@ public class CrateListener implements Listener {
                         items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
                         items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
                         removeKey(player, "emerald");
-                        player.openInventory(getDefaultInventory("§8● §a§lSmaragt Box"));
-                        new CrateManager(player, inventory, items);
+                        new CrateManager(player, inventory, items, "§8● §a§lSmaragt Box");
                     }
                 }
                 if (underCrate.getType() == Material.AMETHYST_BLOCK) {
@@ -124,8 +118,7 @@ public class CrateListener implements Listener {
                         items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
                         items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
                         removeKey(player, "amethyst");
-                        player.openInventory(getDefaultInventory("§8● §d§lAmethyst Box"));
-                        new CrateManager(player, inventory, items);
+                        new CrateManager(player, inventory, items, "§8● §d§lAmethyst Box");
                     }
                 }
                 if (underCrate.getType() == Material.NETHERITE_BLOCK) {
@@ -137,8 +130,7 @@ public class CrateListener implements Listener {
                         items.add(new ItemCreator(Material.IRON_INGOT).setName("2").toItemStack());
                         items.add(new ItemCreator(Material.GOLD_INGOT).setName("3").toItemStack());
                         removeKey(player, "netherite");
-                        player.openInventory(getDefaultInventory("§8● §8§lNetherit Box"));
-                        new CrateManager(player, inventory, items);
+                        new CrateManager(player, inventory, items, "§8● §8§lNetherit Box");
                     }
                 }
             }
@@ -173,22 +165,7 @@ public class CrateListener implements Listener {
         return under.getType() == Material.REINFORCED_DEEPSLATE;
     }
 
-    private void grayGlass(Inventory inventory) {
-        for (int i = 0; i < 22; i++) {
-            inventory.setItem(i, new ItemCreator(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 23; i < 28; i++) {
-            inventory.setItem(i, new ItemCreator(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-        for (int i = 35; i < 54; i++) {
-            inventory.setItem(i, new ItemCreator(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-    }
 
-    private Inventory getDefaultInventory(String displayName) {
-        inventory = Bukkit.createInventory(null, 9*6, displayName);
-        grayGlass(inventory);
-        inventory.setItem(22, new ItemCreator(Material.HOPPER).setName("§8● §7Dein Gewinn§8:").toItemStack());
-        return inventory;
-    }
+
+
 }

@@ -177,13 +177,13 @@ public class ShopListener implements Listener {
                 .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
         shop.setItem(24, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8» §9§lEffekt Shop")
                 .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        addExitButton(shop);
+        // addExitButton(shop);
     }
 
     private void openItemShop(Player player) {
         player.openInventory(itemShop);
         fillWithGlass(itemShop);
-        addBackButton(itemShop);
+        // addBackButton(itemShop);
     }
 
     private void openKeyShop(Player player) {
@@ -197,13 +197,13 @@ public class ShopListener implements Listener {
         keyShop.setItem(30, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §a§lSmaragt Key").setLore("§8» §aPreis§8: §c"+priceForEmerald+"€", "§8» §7Nutze diesen Schlüssel um die §a§lSmaragt Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
         keyShop.setItem(32, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §d§lAmethyst Key").setLore("§8» §aPreis§8: §c"+priceForAmethyst+"€", "§8» §7Nutze diesen Schlüssel um die §d§lAmethyst Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
         keyShop.setItem(34, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §8§lNetherit Key").setLore("§8» §aPreis§8: §c"+priceForNetherite+"€", "§8» §7Nutze diesen Schlüssel um die §8§lNetherit Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        addBackButton(keyShop);
+        // addBackButton(keyShop);
     }
 
     private void openEffectShop(Player player) {
         player.openInventory(effectShop);
         fillWithGlass(effectShop);
-        addBackButton(effectShop);
+        // addBackButton(effectShop);
     }
 
     private void fillWithGlass(Inventory inventory) {
@@ -212,6 +212,7 @@ public class ShopListener implements Listener {
         }
     }
 
+    /*
     private void addBackButton(Inventory inventory) {
         int slot = inventory.getSize()-9;
         inventory.setItem(slot, new ItemCreator(Material.PLAYER_HEAD).createCustomSkull("§8● §cZurück",
@@ -223,4 +224,5 @@ public class ShopListener implements Listener {
         inventory.setItem(slot, new ItemCreator(Material.PLAYER_HEAD).createCustomSkull("§8● §cSchließen",
                 "http://textures.minecraft.net/texture/beb588b21a6f98ad1ff4e085c552dcb050efc9cab427f46048f18fc803475f7").toItemStack());
     }
+     */
 }

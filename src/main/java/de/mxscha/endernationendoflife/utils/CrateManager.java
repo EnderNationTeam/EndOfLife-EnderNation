@@ -1,6 +1,7 @@
 package de.mxscha.endernationendoflife.utils;
 
 import de.mxscha.endernationendoflife.EndoflifeCore;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -22,11 +23,12 @@ public class CrateManager {
     private BukkitTask bukkitTask;
     private HashMap<Player, BukkitTask> list = new HashMap<>();
 
-    public CrateManager(Player player, Inventory inventory, List<ItemStack> items) {
+    public CrateManager(Player player, Inventory inventory, List<ItemStack> items, String inventoryName) {
         this.player = player;
         CrateManager.inventory = inventory;
         this.items = items;
         if (canOpen(player)) {
+            getDefaultInventory(inventoryName);
             this.bukkitTask = EndoflifeCore.getInstance().getServer().getScheduler().runTaskTimerAsynchronously(EndoflifeCore.getInstance(), new Runnable() {
                 @Override
                 public void run() {
@@ -39,8 +41,10 @@ public class CrateManager {
                     checkEnd();
                 }
             }, 2L, 3L);
-        } else
+            list.put(player, this.bukkitTask);
+        } else {
             player.sendMessage(MessageManager.Prefix + "§cBitte nur eine Truhe gleichzeitig öffnen!");
+        }
     }
 
     private void checkEnd() {
@@ -79,6 +83,25 @@ public class CrateManager {
         inventory.setItem(30, new ItemCreator(Material.LIME_STAINED_GLASS_PANE).setName(" ").toItemStack());
         inventory.setItem(32, new ItemCreator(Material.LIME_STAINED_GLASS_PANE).setName(" ").toItemStack());
         inventory.setItem(33, new ItemCreator(Material.LIME_STAINED_GLASS_PANE).setName(" ").toItemStack());
+    }
+
+    private Inventory getDefaultInventory(String displayName) {
+        inventory = Bukkit.createInventory(null, 9*6, displayName);
+        grayGlass(inventory);
+        inventory.setItem(22, new ItemCreator(Material.HOPPER).setName("§8● §7Dein Gewinn§8:").toItemStack());
+        return inventory;
+    }
+
+    private void grayGlass(Inventory inventory) {
+        for (int i = 0; i < 22; i++) {
+            inventory.setItem(i, new ItemCreator(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 23; i < 28; i++) {
+            inventory.setItem(i, new ItemCreator(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
+        for (int i = 35; i < 54; i++) {
+            inventory.setItem(i, new ItemCreator(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack());
+        }
     }
 
     private void moveItem(int slot) {
