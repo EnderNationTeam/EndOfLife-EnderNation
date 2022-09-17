@@ -1,5 +1,6 @@
 package de.mxscha.endernationendoflife.utils;
 
+import de.mxscha.endernationendoflife.utils.skulls.Reflections;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;

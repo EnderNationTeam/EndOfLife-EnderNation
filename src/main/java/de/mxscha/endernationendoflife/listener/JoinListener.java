@@ -2,6 +2,7 @@ package de.mxscha.endernationendoflife.listener;
 
 import de.mxscha.endernationendoflife.EndoflifeCore;
 import de.mxscha.endernationendoflife.utils.scoreboard.DefaultScoreboard;
+import de.mxscha.endernationendoflife.utils.scoreboard.tablist.TablistManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +15,8 @@ public class JoinListener implements Listener {
         Player player = event.getPlayer();
         addToMoneySystem(player);
         addToJobSystem(player);
-       // new DefaultScoreboard(player);
+        // new DefaultScoreboard(player);
+        TablistManager.setTablist(player);
         event.setJoinMessage(null);
     }
 
