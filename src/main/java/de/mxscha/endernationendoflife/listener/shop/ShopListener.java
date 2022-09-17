@@ -23,7 +23,7 @@ public class ShopListener implements Listener {
     private final Inventory shop = Bukkit.createInventory(null, 9*5, "§8» §6§lShop");
     private final Inventory itemShop = Bukkit.createInventory(null, 9*5, "§8» §a§lItem Shop");
     private final Inventory keyShop = Bukkit.createInventory(null, 9*5, "§8» §5§lKey Shop");
-    private final Inventory effectShop = Bukkit.createInventory(null, 9*5, "§8» §9§lEffekt Shop");
+    private final Inventory effectShop = Bukkit.createInventory(null, 9*5, "§8» §9§lRollen Shop");
     int priceForCoal = 1;// €
     int priceForCopper = 2;// €
     int priceForIron = 3;// €
@@ -63,7 +63,7 @@ public class ShopListener implements Listener {
                 switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
                     case "§8» §a§lItem Shop" -> openItemShop(player);
                     case "§8» §5§lKey Shop" -> openKeyShop(player);
-                    case "§8» §9§lEffekt Shop"-> openEffectShop(player);
+                    case "§8» §9§lRollen Shop"-> openEffectShop(player);
                     case "§8● §cSchließen"-> player.closeInventory();
                 }
         }
@@ -93,7 +93,7 @@ public class ShopListener implements Listener {
                 case "§8● §cZurück" -> openShop(player);
             }
         }
-        if (event.getView().getTitle().equals("§8» §9§lEffekt Shop")) {
+        if (event.getView().getTitle().equals("§8» §9§lRollen Shop")) {
             if (!event.getCurrentItem().hasItemMeta()) return;
             if (!event.getCurrentItem().getItemMeta().hasDisplayName()) return;
             if (!event.getInventory().equals(player.getInventory()))
@@ -180,7 +180,7 @@ public class ShopListener implements Listener {
                 .toItemStack());
         shop.setItem(22, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8» §5§lKey Shop")
                 .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        shop.setItem(24, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8» §9§lEffekt Shop")
+        shop.setItem(24, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8» §9§lRollen Shop")
                 .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
         // addExitButton(shop);
     }
@@ -207,13 +207,13 @@ public class ShopListener implements Listener {
     private void openEffectShop(Player player) {
         player.openInventory(effectShop);
         fillWithGlass(effectShop);
-        effectShop.setItem(13, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §9Fliegen").setLore("§8» §aPreis§8: §c" + priceForFlying+"€")
+        effectShop.setItem(13, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §9Fliegen").setLore("§8» §aPreis§8: §c" + priceForFlying+"€", "§8» §7Nutze diese Rolle um §9Fliegen §7zu können!", "", "§8» §7Klicke zum Kaufen!")
                 .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        effectShop.setItem(21, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §6Schneller Abbauen").setLore("§8» §aPreis§8: §c" + priceForFasterMining+"€")
+        effectShop.setItem(21, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §6Schneller Abbauen").setLore("§8» §aPreis§8: §c" + priceForFasterMining+"€", "§8» §7Nutze diese Rolle um schnller §6Abzubauen!", "", "§8» §7Klicke zum Kaufen!")
                 .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        effectShop.setItem(23, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §5Nacht Sicht").setLore("§8» §aPreis§8: §c" + priceForNightVision+"€")
+        effectShop.setItem(23, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §5Nacht Sicht").setLore("§8» §aPreis§8: §c" + priceForNightVision+"€", "§8» §7Nutze diese Rolle um in §5Nacht §7zu sehen!", "", "§8» §7Klicke zum Kaufen!")
                 .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        effectShop.setItem(31, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §2Glück").setLore("§8» §aPreis§8: §c" + priceForLuck+"€")
+        effectShop.setItem(31, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §2Glück").setLore("§8» §aPreis§8: §c" + priceForLuck+"€", "§8» §7Nutze diese Rolle um §2Glück §7zu haben!", "", "§8» §7Klicke zum Kaufen!")
                 .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
         addBackButton(effectShop);
     }

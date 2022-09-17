@@ -89,8 +89,15 @@ public class JobInventory {
     }
 
     private void addExitButton(Inventory inventory) {
+        inventory.setItem(inventory.getSize()-5, new ItemCreator(Material.REDSTONE).setName("§8● §cSchließen").toItemStack());
+    }
+
+    /*
+    private void addExitButton(Inventory inventory) {
         int slot = inventory.getSize()-5;
         inventory.setItem(slot, new ItemCreator(Material.PLAYER_HEAD).createCustomSkull("§8● §cSchließen",
                 "http://textures.minecraft.net/texture/beb588b21a6f98ad1ff4e085c552dcb050efc9cab427f46048f18fc803475f7").toItemStack());
     }
+
+     */
 }
