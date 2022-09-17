@@ -183,33 +183,39 @@ public class ShopListener implements Listener {
     private void openItemShop(Player player) {
         player.openInventory(itemShop);
         fillWithGlass(itemShop);
-        // addBackButton(itemShop);
+        addBackButton(itemShop);
     }
 
     private void openKeyShop(Player player) {
         player.openInventory(keyShop);
         fillWithGlass(keyShop);
-        keyShop.setItem(10, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §8§lKohle Key").setLore("§8» §aPreis§8: §c"+priceForCoal+"€", "§8» §7Nutze diesen Schlüssel um die §8§lKohle Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(7).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(12, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §c§lKupfer Key").setLore("§8» §aPreis§8: §c"+priceForCopper+"€", "§8» §7Nutze diesen Schlüssel um die §c§lKupfer Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(1).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(14, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §f§lEisen Key").setLore("§8» §aPreis§8: §c"+priceForIron+"€", "§8» §7Nutze diesen Schlüssel um die §f§lEisen Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(7).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(16, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §6§lGold Key").setLore("§8» §aPreis§8: §c"+priceForGold+"€", "§8» §7Nutze diesen Schlüssel um die §6§lGold Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(3).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(28, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §b§lDiamand Key").setLore("§8» §aPreis§8: §c"+priceForDiamond+"€", "§8» §7Nutze diesen Schlüssel um die §b§lDiamand Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(4).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(30, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §a§lSmaragt Key").setLore("§8» §aPreis§8: §c"+priceForEmerald+"€", "§8» §7Nutze diesen Schlüssel um die §a§lSmaragt Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(2).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(32, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §d§lAmethyst Key").setLore("§8» §aPreis§8: §c"+priceForAmethyst+"€", "§8» §7Nutze diesen Schlüssel um die §d§lAmethyst Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(6).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(34, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §8§lNetherit Key").setLore("§8» §aPreis§8: §c"+priceForNetherite+"€", "§8» §7Nutze diesen Schlüssel um die §8§lNetherit Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(5).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        // addBackButton(keyShop);
+        keyShop.setItem(4, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §8§lKohle Key").setLore("§8» §aPreis§8: §c"+priceForCoal+"€", "§8» §7Nutze diesen Schlüssel um die §8§lKohle Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(7).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        keyShop.setItem(11, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §c§lKupfer Key").setLore("§8» §aPreis§8: §c"+priceForCopper+"€", "§8» §7Nutze diesen Schlüssel um die §c§lKupfer Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(1).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        keyShop.setItem(15, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §6§lGold Key").setLore("§8» §aPreis§8: §c"+priceForGold+"€", "§8» §7Nutze diesen Schlüssel um die §6§lGold Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(3).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        keyShop.setItem(29, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §b§lDiamand Key").setLore("§8» §aPreis§8: §c"+priceForDiamond+"€", "§8» §7Nutze diesen Schlüssel um die §b§lDiamand Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(4).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        keyShop.setItem(33, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §a§lSmaragt Key").setLore("§8» §aPreis§8: §c"+priceForEmerald+"€", "§8» §7Nutze diesen Schlüssel um die §a§lSmaragt Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(2).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        keyShop.setItem(40, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §d§lAmethyst Key").setLore("§8» §aPreis§8: §c"+priceForAmethyst+"€", "§8» §7Nutze diesen Schlüssel um die §d§lAmethyst Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(6).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        keyShop.setItem(22, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §8§lNetherit Key").setLore("§8» §aPreis§8: §c"+priceForNetherite+"€", "§8» §7Nutze diesen Schlüssel um die §8§lNetherit Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(5).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        addBackButton(keyShop);
     }
+
+
 
     private void openEffectShop(Player player) {
         player.openInventory(effectShop);
         fillWithGlass(effectShop);
-        // addBackButton(effectShop);
+        addBackButton(effectShop);
     }
 
     private void fillWithGlass(Inventory inventory) {
         for (int i = 0; i < inventory.getSize(); i++) {
             inventory.setItem(i, new ItemCreator(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack());
         }
+    }
+
+    private void addBackButton(Inventory inventory) {
+        int slot = inventory.getSize()-9;
+        inventory.setItem(slot, new ItemCreator(Material.REDSTONE).setName("§8● §cZurück").toItemStack());
     }
 
     /*
