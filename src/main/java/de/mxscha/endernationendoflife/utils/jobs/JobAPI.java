@@ -52,6 +52,6 @@ public class JobAPI implements IJobAPI{
 
     public void createTables() {
         this.mySQL = EndoflifeCore.getInstance().getMySQL();
-        mySQL.update("CREATE TABLE IF NOT EXISTS jobs (uuid VARCHAR(36), job VARCHAR(36))");
+        mySQL.update("CREATE TABLE IF NOT EXISTS jobs (uuid VARCHAR(36) PRIMARY KEY, job VARCHAR(36))");
     }
 }

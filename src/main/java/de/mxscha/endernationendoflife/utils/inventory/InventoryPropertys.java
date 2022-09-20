@@ -26,7 +26,7 @@ public class InventoryPropertys {
     }
 
     public static void addBackButton(Inventory inventory) {
-        inventory.setItem(inventory.getSize()-5, new ItemCreator(Material.REDSTONE).setName("§8● §cZurück").toItemStack());
+        inventory.setItem(inventory.getSize()-9, new ItemCreator(Material.REDSTONE).setName("§8● §cZurück").toItemStack());
     }
 
     public static void addExitButton(Inventory inventory) {

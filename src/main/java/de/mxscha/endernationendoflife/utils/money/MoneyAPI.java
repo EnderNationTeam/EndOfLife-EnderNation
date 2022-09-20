@@ -66,6 +66,6 @@ public class MoneyAPI implements IMoneyAPI {
 
     public void createTables() {
         this.mySQL = EndoflifeCore.getInstance().getMySQL();
-        mySQL.update("CREATE TABLE IF NOT EXISTS money (uuid VARCHAR(36), money INT(35))");
+        mySQL.update("CREATE TABLE IF NOT EXISTS money (uuid VARCHAR(36) PRIMARY KEY, money INT(35))");
     }
 }
