@@ -24,7 +24,6 @@ public class Register {
         pluginManager.registerEvents(new QuitListener(), core);
         pluginManager.registerEvents(new ShopListener(), core);
         pluginManager.registerEvents(new SpawnCommand(), core);
-        pluginManager.registerEvents(new JobsCommand(), core);
         pluginManager.registerEvents(new Employer(), core);
         core.getCommand("setup").setExecutor(new SetupCommand());
         core.getCommand("spawn").setExecutor(new SpawnCommand());

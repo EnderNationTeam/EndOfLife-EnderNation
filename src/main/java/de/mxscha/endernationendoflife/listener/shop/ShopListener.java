@@ -5,7 +5,6 @@ import de.mxscha.endernationendoflife.utils.ItemCreator;
 import de.mxscha.endernationendoflife.utils.MessageManager;
 import de.mxscha.endernationendoflife.utils.inventory.InventoryOpener;
 import de.mxscha.endernationendoflife.utils.inventory.InventoryPropertys;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -15,21 +14,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class ShopListener implements Listener {
-
-    private final Inventory shop = Bukkit.createInventory(null, 9*5, "§8» §6§lShop");
-    private final Inventory itemShop = Bukkit.createInventory(null, 9*5, "§8» §a§lItem Shop");
-    private final Inventory keyShop = Bukkit.createInventory(null, 9*5, "§8» §5§lKey Shop");
-    private final Inventory effectShop = Bukkit.createInventory(null, 9*5, "§8» §9§lRollen Shop");
-    int priceForFlying = 2; // €
-    int priceForFasterMining = 2; // €
-    int priceForNightVision = 2; // €
-    int priceForLuck = 2; // €
 
     @EventHandler
     public void onInteract(PlayerInteractEntityEvent event) {

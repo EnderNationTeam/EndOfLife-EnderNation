@@ -27,6 +27,10 @@ public class InventoryOpener {
         ShopInventoryRolls = Bukkit.createInventory(null, 9*5, "§8» §9§lRollen Shop");
 
         setupInventory(JobInventory);
+        setupInventory(ShopInventory);
+        setupInventory(ShopInventoryItems);
+        setupInventory(ShopInventoryKeys);
+        setupInventory(ShopInventoryRolls);
 
         IDs.put(1, JobInventory);
         IDs.put(2, ShopInventory);
@@ -45,7 +49,7 @@ public class InventoryOpener {
         if (inventory == JobInventory) {
             InventoryPropertys.fillWithGlass(inventory);
             InventoryPropertys.addExitButton(inventory);
-            addItemToJobInventory();
+            addItemsToJobInventory();
         }
         if (inventory == ShopInventory) {
             InventoryPropertys.fillWithGlass(inventory);
@@ -69,7 +73,7 @@ public class InventoryOpener {
         }
     }
 
-    private static void addItemToJobInventory() {
+    private static void addItemsToJobInventory() {
         JobInventory.setItem(11, new ItemCreator(Material.DIAMOND_HOE).setName("§8● §a§lFarmer").setLore("§8» §7Baue verschiedene Arten von Essen an/ab", "", "§8» §6§lDu bekommst§8§l:", "§8● §7Eine Diamand Hacke mit §d§oEffizienz", "   §8» §8[§9Unzerstörbar§8]", "   §8» §cAufstufbar!", "§7Mindestlohn§8: §c60€/d", "", "§7Klicke für Mehr Info!").addItemFlag(ItemFlag.HIDE_ATTRIBUTES).toItemStack());
         JobInventory.setItem(12, new ItemCreator(Material.STONE_AXE).setName("§8● §2§lHolzfäller").setLore("§8» §7Baue verschiedene Baum Arten ab", "", "§8» §6§lDu bekommst§8§l:", "§8● §7Eine Stein Axt mit §d§oEffizienz 2", "   §8» §8[§9Unzerstörbar§8]", "   §8» §cAufstufbar!", "§7Mindestlohn§8: §c60€/d", "", "§7Klicke für Mehr Info!").addItemFlag(ItemFlag.HIDE_ATTRIBUTES).toItemStack());
         JobInventory.setItem(13, new ItemCreator(Material.WOODEN_SWORD).setName("§8● §d§lSchlachter").setLore("§8» §7Töte verschiedene Tiere", "", "§8» §6§lDu bekommst§8§l:", "§8● §7Ein Holz Schwert mit §d§oSchärfe 2", "   §8» §8[§9Unzerstörbar§8]", "   §8» §cAufstufbar!", "§7Mindestlohn§8: §c60€/d", "", "§7Klicke für Mehr Info!").addItemFlag(ItemFlag.HIDE_ATTRIBUTES).toItemStack());
