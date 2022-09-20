@@ -217,29 +217,37 @@ public class Employer implements Listener {
         });
     }
 
+    private long getTimeElapsed(long startTime) {
+        return System.currentTimeMillis() - startTime;
+    }
+
+    private long convertTimeMillis(long minutes) {
+        minutes *= 60; // seconds
+        return minutes * 1000; // milliseconds
+    }
+
     private boolean canAgree(Player player) {
         if(cooldown.containsKey(player)) {
-            long timeElapsed = System.currentTimeMillis() - cooldown.get(player);
-            return timeElapsed >= 1200000;
+            return getTimeElapsed(cooldown.get(player)) >= convertTimeMillis(20);
         }
         return true;
     }
 
+    private long getTimeToWait(long minutes, long timeElapsed) {
+        return convertTimeMillis(minutes) - timeElapsed;
+    }
+
     private long restMinutes(Player player) {
-        long timeElapsed = System.currentTimeMillis() - cooldown.get(player);
-        long milliseconds = 1200000 - timeElapsed; // 1.197.016
-        long seconds = milliseconds / 10000; // 197,02
-        long minutes = seconds / 60; // 3,28
-        long restSeconds = seconds % 60;
-        return milliseconds;
+        long milliseconds = getTimeToWait(20, getTimeElapsed(cooldown.get(player)));
+        long seconds = milliseconds / 1000;
+        long minutes = seconds / 60;
+        return minutes;
     }
 
 
     private long restSeconds(Player player) {
-        long timeElapsed = System.currentTimeMillis() - cooldown.get(player);
-        long milliseconds = 1200000 - timeElapsed;
-        long seconds = milliseconds / 10000;
-        long minutes = seconds / 60;
+        long milliseconds = getTimeToWait(20, getTimeElapsed(cooldown.get(player)));
+        long seconds = milliseconds / 1000;
         return seconds % 60;
     }
 }
