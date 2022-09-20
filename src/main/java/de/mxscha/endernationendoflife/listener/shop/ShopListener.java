@@ -3,6 +3,8 @@ package de.mxscha.endernationendoflife.listener.shop;
 import de.mxscha.endernationendoflife.EndoflifeCore;
 import de.mxscha.endernationendoflife.utils.ItemCreator;
 import de.mxscha.endernationendoflife.utils.MessageManager;
+import de.mxscha.endernationendoflife.utils.inventory.InventoryOpener;
+import de.mxscha.endernationendoflife.utils.inventory.InventoryPropertys;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -24,15 +26,6 @@ public class ShopListener implements Listener {
     private final Inventory itemShop = Bukkit.createInventory(null, 9*5, "§8» §a§lItem Shop");
     private final Inventory keyShop = Bukkit.createInventory(null, 9*5, "§8» §5§lKey Shop");
     private final Inventory effectShop = Bukkit.createInventory(null, 9*5, "§8» §9§lRollen Shop");
-    int priceForCoal = 1;// €
-    int priceForCopper = 2;// €
-    int priceForIron = 3;// €
-    int priceForGold = 4;// €
-    int priceForDiamond = 5;// €
-    int priceForEmerald = 6;// €
-    int priceForAmethyst = 7;// €
-    int priceForNetherite = 8;// €
-
     int priceForFlying = 2; // €
     int priceForFasterMining = 2; // €
     int priceForNightVision = 2; // €
@@ -47,7 +40,7 @@ public class ShopListener implements Listener {
         if (trader.getCustomName() == null) return;
         if (trader.getCustomName().equals("§6§lShop")) {
             event.setCancelled(true);
-            openShop(player);
+            InventoryOpener.open(player, 2);
         }
     }
 
@@ -61,9 +54,9 @@ public class ShopListener implements Listener {
             if (!event.getInventory().equals(player.getInventory()))
                 event.setCancelled(true);
                 switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
-                    case "§8» §a§lItem Shop" -> openItemShop(player);
-                    case "§8» §5§lKey Shop" -> openKeyShop(player);
-                    case "§8» §9§lRollen Shop"-> openEffectShop(player);
+                    case "§8» §a§lItem Shop" -> InventoryOpener.open(player, 3);
+                    case "§8» §5§lKey Shop" -> InventoryOpener.open(player, 4);
+                    case "§8» §9§lRollen Shop"-> InventoryOpener.open(player, 5);
                     case "§8● §cSchließen"-> player.closeInventory();
                 }
         }
@@ -73,7 +66,7 @@ public class ShopListener implements Listener {
             if (!event.getInventory().equals(player.getInventory()))
                 event.setCancelled(true);
             switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
-                case "§8● §cZurück" -> openShop(player);
+                case "§8● §cZurück" -> InventoryOpener.open(player, 2);
                 case "§8● §8§lKohle Key" -> buyKey("coal", player);
                 case "§8● §c§lKupfer Key" -> buyKey("copper", player);
                 case "§8● §f§lEisen Key" -> buyKey("iron", player);
@@ -90,7 +83,7 @@ public class ShopListener implements Listener {
             if (!event.getInventory().equals(player.getInventory()))
                 event.setCancelled(true);
             switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
-                case "§8● §cZurück" -> openShop(player);
+                case "§8● §cZurück" -> InventoryOpener.open(player, 2);
             }
         }
         if (event.getView().getTitle().equals("§8» §9§lRollen Shop")) {
@@ -99,7 +92,7 @@ public class ShopListener implements Listener {
             if (!event.getInventory().equals(player.getInventory()))
                 event.setCancelled(true);
             switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
-                case "§8● §cZurück" -> openShop(player);
+                case "§8● §cZurück" -> InventoryOpener.open(player, 2);
             }
         }
     }
@@ -107,64 +100,56 @@ public class ShopListener implements Listener {
     private void buyKey(String key, Player player) {
         switch (key) {
             case "coal" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= priceForCoal) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), priceForCoal);
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Coal")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Coal"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8§lKohle Key").setCustomModelData(7).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(MessageManager.Prefix + "§7Du hast einen §0§lKohle Key §7gekauft!");
                 } else
                     player.sendMessage(MessageManager.Prefix + "§cDu hast nicht genügend Geld!");
             }
             case "copper" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= priceForCopper) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), priceForCopper);
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Copper")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Copper"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").setCustomModelData(1).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(MessageManager.Prefix + "§7Du hast einen §c§lKupfer Key §7gekauft!");
                 } else
                     player.sendMessage(MessageManager.Prefix + "§cDu hast nicht genügend Geld!");
             }
-            case "iron" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= priceForIron) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), priceForIron);
-                    player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§f§lEisen Key").setCustomModelData(7).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-                    player.sendMessage(MessageManager.Prefix + "§7Du hast einen §f§lEisen Key §7gekauft!");
-                } else
-                    player.sendMessage(MessageManager.Prefix + "§cDu hast nicht genügend Geld!");
-            }
             case "gold" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= priceForGold) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), priceForGold);
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Cold")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Gold"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§6§lGold Key").setCustomModelData(3).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(MessageManager.Prefix + "§7Du hast einen §6§lGold Key §7gekauft!");
                 } else
                     player.sendMessage(MessageManager.Prefix + "§cDu hast nicht genügend Geld!");
             }
             case "diamond" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= priceForDiamond) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), priceForDiamond);
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Diamond")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Diamond"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§b§lDiamand Key").setCustomModelData(4).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(MessageManager.Prefix + "§7Du hast einen §b§lDiamand Key §7gekauft!");
                 } else
                     player.sendMessage(MessageManager.Prefix + "§cDu hast nicht genügend Geld!");
             }
             case "emerald" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= priceForEmerald) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), priceForEmerald);
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Emerald")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Emerald"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§a§lSmaragt Key").setCustomModelData(2).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(MessageManager.Prefix + "§7Du hast einen §a§lSmaragt Key §7gekauft!");
                 } else
                     player.sendMessage(MessageManager.Prefix + "§cDu hast nicht genügend Geld!");
             }
             case "amethyst" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= priceForAmethyst) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), priceForAmethyst);
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Amethyst")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Amethyst"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§d§lAmethyst Key").setCustomModelData(6).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(MessageManager.Prefix + "§7Du hast einen §d§lAmethyst Key §7gekauft!");
                 } else
                     player.sendMessage(MessageManager.Prefix + "§cDu hast nicht genügend Geld!");
             }
             case "netherite" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= priceForNetherite) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), priceForNetherite);
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Netherite")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Netherite"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8§lNetherit Key").setCustomModelData(5).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(MessageManager.Prefix + "§7Du hast einen §8§lNetherit Key §7gekauft!");
                 } else
@@ -172,74 +157,4 @@ public class ShopListener implements Listener {
             }
         }
     }
-
-    private void openShop(Player player) {
-        player.openInventory(shop);
-        fillWithGlass(shop);
-        shop.setItem(20, new ItemCreator(Material.ENDER_CHEST).setName("§8» §a§lItem Shop")
-                .toItemStack());
-        shop.setItem(22, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8» §5§lKey Shop")
-                .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        shop.setItem(24, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8» §9§lRollen Shop")
-                .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        // addExitButton(shop);
-    }
-
-    private void openItemShop(Player player) {
-        player.openInventory(itemShop);
-        fillWithGlass(itemShop);
-        addBackButton(itemShop);
-    }
-
-    private void openKeyShop(Player player) {
-        player.openInventory(keyShop);
-        fillWithGlass(keyShop);
-        keyShop.setItem(4, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §8§lKohle Key").setLore("§8» §aPreis§8: §c"+priceForCoal+"€", "§8» §7Nutze diesen Schlüssel um die §8§lKohle Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(7).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(11, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §c§lKupfer Key").setLore("§8» §aPreis§8: §c"+priceForCopper+"€", "§8» §7Nutze diesen Schlüssel um die §c§lKupfer Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(1).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(29, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §6§lGold Key").setLore("§8» §aPreis§8: §c"+priceForGold+"€", "§8» §7Nutze diesen Schlüssel um die §6§lGold Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(3).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(33, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §b§lDiamand Key").setLore("§8» §aPreis§8: §c"+priceForDiamond+"€", "§8» §7Nutze diesen Schlüssel um die §b§lDiamand Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(4).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(40, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §a§lSmaragt Key").setLore("§8» §aPreis§8: §c"+priceForEmerald+"€", "§8» §7Nutze diesen Schlüssel um die §a§lSmaragt Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(2).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(15, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §d§lAmethyst Key").setLore("§8» §aPreis§8: §c"+priceForAmethyst+"€", "§8» §7Nutze diesen Schlüssel um die §d§lAmethyst Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(6).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        keyShop.setItem(22, new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8● §8§lNetherit Key").setLore("§8» §aPreis§8: §c"+priceForNetherite+"€", "§8» §7Nutze diesen Schlüssel um die §8§lNetherit Kiste §7zu öffnen!", "",  "§8» §7Klicke zum Kaufen!").setCustomModelData(5).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        addBackButton(keyShop);
-    }
-
-    private void openEffectShop(Player player) {
-        player.openInventory(effectShop);
-        fillWithGlass(effectShop);
-        effectShop.setItem(13, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §9Fliegen").setLore("§8» §aPreis§8: §c" + priceForFlying+"€", "§8» §7Nutze diese Rolle um §9Fliegen §7zu können!", "", "§8» §7Klicke zum Kaufen!")
-                .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        effectShop.setItem(21, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §6Schneller Abbauen").setLore("§8» §aPreis§8: §c" + priceForFasterMining+"€", "§8» §7Nutze diese Rolle um schnller §6Abzubauen!", "", "§8» §7Klicke zum Kaufen!")
-                .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        effectShop.setItem(23, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §5Nacht Sicht").setLore("§8» §aPreis§8: §c" + priceForNightVision+"€", "§8» §7Nutze diese Rolle um in §5Nacht §7zu sehen!", "", "§8» §7Klicke zum Kaufen!")
-                .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        effectShop.setItem(31, new ItemCreator(Material.FLOWER_BANNER_PATTERN).setName("§8● §2Glück").setLore("§8» §aPreis§8: §c" + priceForLuck+"€", "§8» §7Nutze diese Rolle um §2Glück §7zu haben!", "", "§8» §7Klicke zum Kaufen!")
-                .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
-        addBackButton(effectShop);
-    }
-
-    private void fillWithGlass(Inventory inventory) {
-        for (int i = 0; i < inventory.getSize(); i++) {
-            inventory.setItem(i, new ItemCreator(Material.GRAY_STAINED_GLASS_PANE).setName(" ").toItemStack());
-        }
-    }
-
-    private void addBackButton(Inventory inventory) {
-        int slot = inventory.getSize()-9;
-        inventory.setItem(slot, new ItemCreator(Material.REDSTONE).setName("§8● §cZurück").toItemStack());
-    }
-
-    /*
-    private void addBackButton(Inventory inventory) {
-        int slot = inventory.getSize()-9;
-        inventory.setItem(slot, new ItemCreator(Material.PLAYER_HEAD).createCustomSkull("§8● §cZurück",
-                "http://textures.minecraft.net/texture/f84f597131bbe25dc058af888cb29831f79599bc67c95c802925ce4afba332fc").toItemStack());
-    }
-
-    private void addExitButton(Inventory inventory) {
-        int slot = inventory.getSize()-5;
-        inventory.setItem(slot, new ItemCreator(Material.PLAYER_HEAD).createCustomSkull("§8● §cSchließen",
-                "http://textures.minecraft.net/texture/beb588b21a6f98ad1ff4e085c552dcb050efc9cab427f46048f18fc803475f7").toItemStack());
-    }
-     */
 }

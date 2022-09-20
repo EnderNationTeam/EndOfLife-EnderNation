@@ -1,5 +1,8 @@
 package de.mxscha.endernationendoflife.utils.jobs;
 
+import de.mxscha.endernationendoflife.EndoflifeCore;
+import de.mxscha.endernationendoflife.utils.MessageManager;
+import de.mxscha.endernationendoflife.utils.inventory.InventoryOpener;
 import de.mxscha.endernationendoflife.utils.locations.ConfigLocationUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -8,14 +11,9 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.inventory.Inventory;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class Employer implements Listener {
-
-    private final Inventory employer = Bukkit.createInventory(null, 9*5, "§8» §a§lArbeitsgeber");
 
     @EventHandler
     public void onInteract(PlayerInteractEntityEvent event) {
@@ -26,7 +24,7 @@ public class Employer implements Listener {
         if (trader.getCustomName() == null) return;
         if (trader.getCustomName().equals("§a§lArbeitsgeber")) {
             event.setCancelled(true);
-            new JobInventory(player);
+            InventoryOpener.open(player, 1);
         }
     }
 
@@ -34,12 +32,23 @@ public class Employer implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         Player player = (Player) event.getWhoClicked();
         if (event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) return;
-        if (event.getView().getTitle().equals("§8» §a§lArbeitsgeber")) {
+        if (event.getView().getTitle().equals("§8» §a§lJobs")) {
             if (!event.getCurrentItem().hasItemMeta()) return;
             if (!event.getCurrentItem().getItemMeta().hasDisplayName()) return;
             if (!event.getInventory().equals(player.getInventory()))
                 event.setCancelled(true);
+                switch (event.getCurrentItem().getItemMeta().getDisplayName()) {
+                    case "§8● §a§lFarmer" -> {
 
+                    }
+                    case "" -> {
+                        if (!EndoflifeCore.getInstance().getJobAPI().getJob(player.getUniqueId()).equals("Farmer")) {
+
+                        } else
+                            player.sendMessage(MessageManager.Prefix + "§cDu bist bereits §aFarmer§c!");
+                        break;
+                    }
+                }
         }
     }
 

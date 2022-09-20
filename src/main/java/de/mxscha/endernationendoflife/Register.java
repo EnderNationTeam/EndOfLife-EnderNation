@@ -8,6 +8,7 @@ import de.mxscha.endernationendoflife.listener.CrateListener;
 import de.mxscha.endernationendoflife.listener.*;
 import de.mxscha.endernationendoflife.listener.generall.ShopAreaListener;
 import de.mxscha.endernationendoflife.listener.shop.ShopListener;
+import de.mxscha.endernationendoflife.utils.inventory.InventoryOpener;
 import de.mxscha.endernationendoflife.utils.jobs.Employer;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -34,6 +35,7 @@ public class Register {
         core.getCommand("invsee").setExecutor(new InvseeCommand());
         core.getCommand("jobs").setExecutor(new JobsCommand());
         addEntities();
+        InventoryOpener.initInventorys();
     }
 
     private static void addEntities() {
