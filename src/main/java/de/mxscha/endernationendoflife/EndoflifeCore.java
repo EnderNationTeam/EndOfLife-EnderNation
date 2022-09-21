@@ -6,6 +6,7 @@ import de.mxscha.endernationendoflife.utils.backpack.BackpackConfig;
 import de.mxscha.endernationendoflife.utils.backpack.BackpackManager;
 import de.mxscha.endernationendoflife.utils.jobs.Employer;
 import de.mxscha.endernationendoflife.utils.jobs.JobAPI;
+import de.mxscha.endernationendoflife.utils.jobs.delivery.Delivery;
 import de.mxscha.endernationendoflife.utils.locations.LocationsConfig;
 import de.mxscha.endernationendoflife.utils.money.Money;
 import de.mxscha.endernationendoflife.utils.money.MoneyAPI;
@@ -57,6 +58,7 @@ public final class EndoflifeCore extends JavaPlugin {
         BackpackConfig.save();
         LocationsConfig.save();
         Employer.despawn();
+        Delivery.despawnAccept();
         entityManager.despawn();
     }
 

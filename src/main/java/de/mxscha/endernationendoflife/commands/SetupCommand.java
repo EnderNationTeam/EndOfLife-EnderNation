@@ -33,12 +33,17 @@ public class SetupCommand implements CommandExecutor {
                             if (args[1].equalsIgnoreCase("employer")) {
                                 new ConfigLocationUtil(player.getLocation(),"Employer").saveLocation();
                                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
-                                player.sendMessage(MessageManager.Prefix + "§7Du hast den Employer gesetzt!");
+                                player.sendMessage(MessageManager.Prefix + "§7Du hast den Arbeitsgeber gesetzt!");
                             }
                             if (args[1].equalsIgnoreCase("shop")) {
                                 new ConfigLocationUtil(player.getLocation(),"Shop").saveLocation();
                                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                                 player.sendMessage(MessageManager.Prefix + "§7Du hast den Shop gesetzt!");
+                            }
+                            if (args[1].equalsIgnoreCase("accepter")) {
+                                new ConfigLocationUtil(player.getLocation(),"Accepter").saveLocation();
+                                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                                player.sendMessage(MessageManager.Prefix + "§7Du hast den Abgabeort gesetzt!");
                             }
                         }
                         break;

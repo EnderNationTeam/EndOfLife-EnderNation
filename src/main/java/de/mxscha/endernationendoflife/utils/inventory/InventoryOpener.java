@@ -1,7 +1,9 @@
 package de.mxscha.endernationendoflife.utils.inventory;
 
 import de.mxscha.endernationendoflife.utils.ItemCreator;
+import de.mxscha.endernationendoflife.utils.locations.ConfigLocationUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -145,7 +147,10 @@ public class InventoryOpener {
 
     private static void addItemsToFarmerJobInfoInventory() {
         JobInventoryFarmerInfo.setItem(4, new ItemCreator(Material.WRITABLE_BOOK).setName("§8● §6Infos").setLore("§8» §7Alle Infos zum Job §aFarmer§7!").toItemStack());
-        JobInventoryFarmerInfo.setItem(18, new ItemCreator(Material.HOPPER_MINECART).setName("§8● §aAbgabe Ort").setLore("§8» §2X§8: §e182§8, §2Y§8: §e103§8, §2Z§8: §e-123", "§8» §6/abgabe").toItemStack());
+        Location location = new Location(Bukkit.getWorld("world"), 1, 1, 1);
+        if (new ConfigLocationUtil("Accepter").loadLocation() != null)
+            location = new ConfigLocationUtil("Accepter").loadLocation();
+        JobInventoryFarmerInfo.setItem(18, new ItemCreator(Material.HOPPER_MINECART).setName("§8● §aAbgabe Ort").setLore("§8» §2X§8: §e"+Math.round(location.getX())+"§8, §2Y§8: §e"+Math.round(location.getY())+"§8, §2Z§8: §e"+Math.round(location.getZ()), "§8» §6/abgabe").toItemStack());
         JobInventoryFarmerInfo.setItem(27, new ItemCreator(Material.DIAMOND_HOE).setName("§8● §aFarmer Hacke").setLore("§7Baue Folgende Dinge Mit deiner §aFarmer Hacke §7ab!", "", "§6§lInfo§8: §7Bringe die Abgebauten Dinge zum Abgabeort", "        §7um eine Bohnuszahlung zu bekommen!").addItemFlag(ItemFlag.HIDE_ATTRIBUTES).toItemStack());
         makeGlassBorder(JobInventoryFarmerInfo);
         JobInventoryFarmerInfo.setItem(30, new ItemCreator(Material.POTATO).setName("§8» §eKartoffel").toItemStack());

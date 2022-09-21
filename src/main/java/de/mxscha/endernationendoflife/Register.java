@@ -10,6 +10,7 @@ import de.mxscha.endernationendoflife.listener.generall.ShopAreaListener;
 import de.mxscha.endernationendoflife.listener.shop.ShopListener;
 import de.mxscha.endernationendoflife.utils.inventory.InventoryOpener;
 import de.mxscha.endernationendoflife.utils.jobs.Employer;
+import de.mxscha.endernationendoflife.utils.jobs.delivery.Delivery;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 
@@ -39,5 +40,6 @@ public class Register {
 
     private static void addEntities() {
         Employer.spawn();
+        Delivery.spawnAccept();
     }
 }

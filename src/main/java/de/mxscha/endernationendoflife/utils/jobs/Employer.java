@@ -9,6 +9,7 @@ import de.mxscha.endernationendoflife.utils.scoreboard.DefaultScoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -116,8 +117,9 @@ public class Employer implements Listener {
                                 givePlayerJobTool(player, Job.FARMER);
                                 player.sendMessage(MessageManager.Prefix + "§7Du bist nun §aFarmer§7!");
                             } else {
-                                player.sendMessage(MessageManager.Prefix + "§cDu hast vor weniger als 20 Minuten einen Job gekündigt!");
+                                player.sendMessage(MessageManager.Prefix + "§cDu hast vor weniger als 20min gekündigt!");
                                 player.sendMessage(MessageManager.Prefix + "§cDu musst noch §6" + restMinutes(player) + ":" + restSeconds(player) + " §cwarten!");
+                                player.sendMessage(MessageManager.Prefix + "§cBis du einen neuen Job annehmen kannst!");
                             }
                         } else
                             player.sendMessage(MessageManager.Prefix + "§cDu hast bereits einen Job!");
@@ -176,32 +178,22 @@ public class Employer implements Listener {
 
     private void givePlayerJobTool(Player player, Job job) {
         switch (job) {
-            case FARMER -> player.getInventory().addItem(new ItemCreator(Material.DIAMOND_HOE).setName("§aFarmer Hacke").setUnbreakable(true).setLore("§8» §7Level§8: §b1").toItemStack());
+            case FARMER ->
+                    player.getInventory().addItem(new ItemCreator(Material.DIAMOND_HOE).setName("§aFarmer Hacke").setUnbreakable(true).setLore("§8» §7Level§8: §b1").toItemStack());
         }
     }
 
-    /*
-    case "" -> {
-                        if (!EndoflifeCore.getInstance().getJobAPI().getJob(player.getUniqueId()).equals("Farmer")) {
-
-                        } else
-                            player.sendMessage(MessageManager.Prefix + "§cDu bist bereits §aFarmer§c!");
-                        break;
-                    }
-     */
-
     public static void spawn() {
-        try {
-            Location location = new ConfigLocationUtil("Employer").loadLocation();
-            WanderingTrader wanderingTrader = (WanderingTrader) location.getWorld().spawnEntity(location, EntityType.WANDERING_TRADER);
-            wanderingTrader.setAI(false);
-            wanderingTrader.setInvulnerable(true);
-            wanderingTrader.setSilent(true);
-            wanderingTrader.setCustomName("§a§lArbeitsgeber");
-            wanderingTrader.setCustomNameVisible(true);
-        } catch (Exception e) {
-            Bukkit.getConsoleSender().sendMessage("§cDie Employer Location ist nicht gesetzt!");
-        }
+        if (new ConfigLocationUtil("Employer").loadLocation() == null) return;
+        Location location = new ConfigLocationUtil("Employer").loadLocation();
+        World world = location.getWorld();
+        if (world == null) return;
+        WanderingTrader wanderingTrader = (WanderingTrader) world.spawnEntity(location, EntityType.WANDERING_TRADER);
+        wanderingTrader.setAI(false);
+        wanderingTrader.setInvulnerable(true);
+        wanderingTrader.setSilent(true);
+        wanderingTrader.setCustomName("§a§lArbeitsgeber");
+        wanderingTrader.setCustomNameVisible(true);
     }
 
     public static void despawn() {
@@ -227,7 +219,7 @@ public class Employer implements Listener {
     }
 
     private boolean canAgree(Player player) {
-        if(cooldown.containsKey(player)) {
+        if (cooldown.containsKey(player)) {
             return getTimeElapsed(cooldown.get(player)) >= convertTimeMillis(20);
         }
         return true;
@@ -243,7 +235,6 @@ public class Employer implements Listener {
         long minutes = seconds / 60;
         return minutes;
     }
-
 
     private long restSeconds(Player player) {
         long milliseconds = getTimeToWait(20, getTimeElapsed(cooldown.get(player)));
