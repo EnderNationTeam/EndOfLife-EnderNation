@@ -1,6 +1,6 @@
 name: EndOfLife-EN
 version: '${project.version}'
-main: de.mxscha.endernationendoflife.EndoflifeCore
+main: de.mxscha.en.endoflife.EndoflifeCore
 api-version: 1.19
 
 commands:
@@ -11,6 +11,11 @@ commands:
   backpack:
     aliases: bp
   gamemode:
+    aliases: gm
   money:
   invsee:
   jobs:
+  build:
+  vanish:
+    aliases: v
+  pay:
