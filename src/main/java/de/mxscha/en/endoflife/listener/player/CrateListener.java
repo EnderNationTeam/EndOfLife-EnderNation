@@ -1,9 +1,9 @@
 package de.mxscha.en.endoflife.listener.player;
 
-import de.mxscha.en.endoflife.utils.manager.chat.Messages;
-import de.mxscha.en.endoflife.utils.manager.crate.CrateManager;
-import de.mxscha.en.endoflife.utils.manager.item.ItemCreator;
-import de.mxscha.en.endoflife.utils.manager.item.inventory.InventoryPropertys;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.crate.CrateManager;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.item.ItemCreator;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.item.inventory.InventoryPropertys;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -16,6 +16,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -36,13 +37,13 @@ public class CrateListener implements Listener {
 
     private void registerItemsToCrates() {
         // Kohle
-        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8§lKohle Key").toItemStack());
-        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8§lKohle Key").toItemStack());
-        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").toItemStack());
-        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").toItemStack());
-        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").toItemStack());
-        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").toItemStack());
-        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§6§lGold Key").toItemStack());
+        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8§lKohle Key").setCustomModelData(7).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8§lKohle Key").setCustomModelData(7).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").setCustomModelData(1).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").setCustomModelData(1).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").setCustomModelData(1).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").setCustomModelData(1).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
+        CoalItems.add(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§6§lGold Key").setCustomModelData(3).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
         CoalItems.add(new ItemCreator(Material.DIAMOND).toItemStack());
         CoalItems.add(new ItemCreator(Material.IRON_INGOT).setAmount(new Random().nextInt(8)).toItemStack());
         CoalItems.add(new ItemCreator(Material.IRON_INGOT).setAmount(new Random().nextInt(5)).toItemStack());
@@ -84,6 +85,7 @@ public class CrateListener implements Listener {
                     case COAL_BLOCK -> {
                         if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
                             event.setCancelled(true);
+
                             Inventory showcase;
                             if (CoalItems.size() <= 9*2) {
                                 showcase = Bukkit.createInventory(null, 9*4, "§8● §8§lKohle Box");
@@ -100,9 +102,12 @@ public class CrateListener implements Listener {
                                 player.sendMessage(Messages.PREFIX.get() + "§cNutze einen §0§lKohle Key §cum diese Box zu öffnen!");
                             } else {
                                 if (canOpen(player)) {
-                                    removeKey(player, "coal");
-                                    new CrateManager(player, CoalItems, "§8● §8§lKohle Box");
-                                    cooldown.put(player, true);
+                                    if (ItemFitInInventory(player)) {
+                                        removeKey(player, "coal");
+                                        new CrateManager(player, CoalItems, "§8● §8§lKohle Box");
+                                        cooldown.put(player, true);
+                                    } else
+                                        player.sendMessage(Messages.PREFIX.get() + "§cBitte Leere dein Inventar!");
                                 } else
                                     player.sendMessage(Messages.PREFIX.get() + "§cBitte öffne nur eine Kiste gleichzeitig!");
                             }
@@ -260,6 +265,21 @@ public class CrateListener implements Listener {
         return under.getType() == Material.REINFORCED_DEEPSLATE;
     }
 
+    public boolean ItemFitInInventory(Player player){
+        int i = 0;
+        ArrayList<ItemStack> items = new ArrayList<>();
+        Inventory inventory = player.getInventory();
+        for(ItemStack item : inventory.getContents()) {
+            if(item == null) continue;
+            if (!items.contains(item)) {
+                items.add(item);
+                i++;
+            } else {
+                i++;
+            }
+        }
+        return i < 36;
+    }
 
     private boolean canOpen(Player player) {
         return !cooldown.containsKey(player);

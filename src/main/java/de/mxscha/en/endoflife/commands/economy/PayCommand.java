@@ -1,7 +1,7 @@
 package de.mxscha.en.endoflife.commands.economy;
 
 import de.mxscha.en.endoflife.EndoflifeCore;
-import de.mxscha.en.endoflife.utils.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
 import de.mxscha.en.endoflife.utils.scoreboard.DefaultScoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -25,18 +25,19 @@ public class PayCommand implements CommandExecutor {
                 case 2 -> {
                     if (args[1].equalsIgnoreCase("all")) {
                             String playername = args[0];
-                            int amount = EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId());
+                            int amount = EndoflifeCore.getInstance().getMoneyAPI().getMoney(player);
                             Player target = Bukkit.getPlayer(playername);
                             if (target == null) {
                                 player.sendMessage(Messages.PLAYER_NOT_FOUND.get());
                             } else {
                                 if (amount != 0) {
-                                    if (amount <= EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId())) {
-                                        EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), amount);
-                                        EndoflifeCore.getInstance().getMoneyAPI().addMoney(target.getUniqueId(), amount);
+                                    if (amount <= EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)) {
+                                        EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player, amount);
+                                        EndoflifeCore.getInstance().getMoneyAPI().addMoney(target, amount);
                                         player.sendMessage(Messages.PREFIX.get() + "§7Du hast §e" + target.getName() + " §c" + amount + "€ §7gezahlt!");
                                         target.sendMessage(Messages.PREFIX.get() + "§e" + player.getName() + " §7hat dir §c" + amount + "€ §7gezahlt!");
-                                        Bukkit.getOnlinePlayers().forEach(DefaultScoreboard::new);
+                                        new DefaultScoreboard(target).update();
+                                        new DefaultScoreboard(player).update();
                                     } else
                                         player.sendMessage(Messages.PREFIX.get() + "§cDu hast nicht genügend Geld!");
                                 } else
@@ -51,12 +52,13 @@ public class PayCommand implements CommandExecutor {
                                 player.sendMessage(Messages.PLAYER_NOT_FOUND.get());
                             } else {
                                 if (amount != 0) {
-                                    if (amount <= EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId())) {
-                                        EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), amount);
-                                        EndoflifeCore.getInstance().getMoneyAPI().addMoney(target.getUniqueId(), amount);
+                                    if (amount <= EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)) {
+                                        EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player, amount);
+                                        EndoflifeCore.getInstance().getMoneyAPI().addMoney(target, amount);
                                         player.sendMessage(Messages.PREFIX.get() + "§7Du hast §e" + target.getName() + " §c" + amount + "€ §7gezahlt!");
                                         target.sendMessage(Messages.PREFIX.get() + "§e" + player.getName() + " §7hat dir §c" + amount + "€ §7gezahlt!");
-                                        Bukkit.getOnlinePlayers().forEach(DefaultScoreboard::new);
+                                        new DefaultScoreboard(target).update();
+                                        new DefaultScoreboard(player).update();
                                     } else
                                         player.sendMessage(Messages.PREFIX.get() + "§cDu hast nicht genügend Geld!");
                                 } else

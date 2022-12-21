@@ -19,3 +19,7 @@ commands:
   vanish:
     aliases: v
   pay:
+  tpa:
+  tpaccept:
+  trade:
+  playerinfo:

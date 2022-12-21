@@ -1,7 +1,7 @@
 package de.mxscha.en.endoflife.commands.world;
 
-import de.mxscha.en.endoflife.utils.manager.chat.Messages;
-import de.mxscha.en.endoflife.utils.manager.location.ConfigLocationUtil;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.location.ConfigLocationUtil;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,10 +1,11 @@
 package de.mxscha.en.endoflife.listener.shop;
 
 import de.mxscha.en.endoflife.EndoflifeCore;
-import de.mxscha.en.endoflife.utils.manager.chat.Messages;
-import de.mxscha.en.endoflife.utils.manager.item.ItemCreator;
-import de.mxscha.en.endoflife.utils.manager.item.inventory.InventoryOpener;
-import de.mxscha.en.endoflife.utils.manager.item.inventory.InventoryPropertys;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.item.ItemCreator;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.item.inventory.InventoryOpener;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.item.inventory.InventoryPropertys;
+import de.mxscha.en.endoflife.utils.scoreboard.DefaultScoreboard;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -87,61 +88,62 @@ public class ShopListener implements Listener {
     private void buyKey(String key, Player player) {
         switch (key) {
             case "coal" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Coal")) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Coal"));
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player) >= InventoryPropertys.getPriceFor("Coal")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player, InventoryPropertys.getPriceFor("Coal"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8§lKohle Key").setCustomModelData(7).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(Messages.PREFIX.get() + "§7Du hast einen §0§lKohle Key §7gekauft!");
                 } else
                     player.sendMessage(Messages.PREFIX.get() + "§cDu hast nicht genügend Geld!");
             }
             case "copper" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Copper")) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Copper"));
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player) >= InventoryPropertys.getPriceFor("Copper")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player, InventoryPropertys.getPriceFor("Copper"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§c§lKupfer Key").setCustomModelData(1).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(Messages.PREFIX.get() + "§7Du hast einen §c§lKupfer Key §7gekauft!");
                 } else
                     player.sendMessage(Messages.PREFIX.get() + "§cDu hast nicht genügend Geld!");
             }
             case "gold" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Cold")) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Gold"));
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player) >= InventoryPropertys.getPriceFor("Cold")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player, InventoryPropertys.getPriceFor("Gold"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§6§lGold Key").setCustomModelData(3).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(Messages.PREFIX.get() + "§7Du hast einen §6§lGold Key §7gekauft!");
                 } else
                     player.sendMessage(Messages.PREFIX.get() + "§cDu hast nicht genügend Geld!");
             }
             case "diamond" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Diamond")) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Diamond"));
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player) >= InventoryPropertys.getPriceFor("Diamond")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player, InventoryPropertys.getPriceFor("Diamond"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§b§lDiamand Key").setCustomModelData(4).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(Messages.PREFIX.get() + "§7Du hast einen §b§lDiamand Key §7gekauft!");
                 } else
                     player.sendMessage(Messages.PREFIX.get() + "§cDu hast nicht genügend Geld!");
             }
             case "emerald" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Emerald")) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Emerald"));
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player) >= InventoryPropertys.getPriceFor("Emerald")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player, InventoryPropertys.getPriceFor("Emerald"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§a§lSmaragt Key").setCustomModelData(2).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(Messages.PREFIX.get() + "§7Du hast einen §a§lSmaragt Key §7gekauft!");
                 } else
                     player.sendMessage(Messages.PREFIX.get() + "§cDu hast nicht genügend Geld!");
             }
             case "amethyst" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Amethyst")) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Amethyst"));
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player) >= InventoryPropertys.getPriceFor("Amethyst")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player, InventoryPropertys.getPriceFor("Amethyst"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§d§lAmethyst Key").setCustomModelData(6).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(Messages.PREFIX.get() + "§7Du hast einen §d§lAmethyst Key §7gekauft!");
                 } else
                     player.sendMessage(Messages.PREFIX.get() + "§cDu hast nicht genügend Geld!");
             }
             case "netherite" -> {
-                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player.getUniqueId()) >= InventoryPropertys.getPriceFor("Netherite")) {
-                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player.getUniqueId(), InventoryPropertys.getPriceFor("Netherite"));
+                if (EndoflifeCore.getInstance().getMoneyAPI().getMoney(player) >= InventoryPropertys.getPriceFor("Netherite")) {
+                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(player, InventoryPropertys.getPriceFor("Netherite"));
                     player.getInventory().addItem(new ItemCreator(Material.DISC_FRAGMENT_5).setName("§8§lNetherit Key").setCustomModelData(5).addItemFlag(ItemFlag.HIDE_POTION_EFFECTS).toItemStack());
                     player.sendMessage(Messages.PREFIX.get() + "§7Du hast einen §8§lNetherit Key §7gekauft!");
                 } else
                     player.sendMessage(Messages.PREFIX.get() + "§cDu hast nicht genügend Geld!");
             }
         }
+        new DefaultScoreboard(player).update();
     }
 }

@@ -1,6 +1,6 @@
 package de.mxscha.en.endoflife.commands.player;
 
-import de.mxscha.en.endoflife.utils.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Sound;

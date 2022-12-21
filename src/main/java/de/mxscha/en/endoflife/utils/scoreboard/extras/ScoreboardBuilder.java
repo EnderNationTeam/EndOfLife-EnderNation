@@ -22,7 +22,7 @@ public abstract class ScoreboardBuilder {
             this.scoreboard.getObjective("display").unregister();
         this.objective = this.scoreboard.registerNewObjective("display", "dummy", displayName);
         this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
-        createScoreboard();
+        // createScoreboard();
     }
 
     public abstract void createScoreboard();
