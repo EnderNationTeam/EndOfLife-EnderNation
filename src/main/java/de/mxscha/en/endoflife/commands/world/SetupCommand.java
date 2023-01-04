@@ -1,7 +1,7 @@
 package de.mxscha.en.endoflife.commands.world;
 
-import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.location.ConfigLocationUtil;
+import de.mxscha.en.endoflife.utils.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.manager.location.ConfigLocationUtil;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -45,17 +45,15 @@ public class SetupCommand implements CommandExecutor {
                                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                                 player.sendMessage(Messages.PREFIX.get() + "§7Du hast den Abgabeort gesetzt!");
                             }
-                        }
-                        break;
-                    case 3:
-                        if (args[0].equalsIgnoreCase("set")) {
-                            if (args[1].equalsIgnoreCase("crate")) {
-                                if (args[2].equalsIgnoreCase("coal")) {
-
-                                }
+                            if (args[1].equalsIgnoreCase("smith")) {
+                                new ConfigLocationUtil(player.getLocation(),"ToolSmith").saveLocation();
+                                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                                player.sendMessage(Messages.PREFIX.get() + "§7Du hast den Tool Smith gesetzt!");
                             }
                         }
                         break;
+                    case 3:
+
                     case 4:
                         if (args[0].equalsIgnoreCase("set")) {
                             if (args[1].equalsIgnoreCase("Region")) {

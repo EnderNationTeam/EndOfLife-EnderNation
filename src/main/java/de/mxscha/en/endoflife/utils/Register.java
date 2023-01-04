@@ -5,18 +5,17 @@ import de.mxscha.en.endoflife.commands.economy.JobsCommand;
 import de.mxscha.en.endoflife.commands.economy.MoneyCommand;
 import de.mxscha.en.endoflife.commands.economy.PayCommand;
 import de.mxscha.en.endoflife.commands.player.*;
-import de.mxscha.en.endoflife.commands.teleport.SpawnCommand;
-import de.mxscha.en.endoflife.commands.teleport.TpaCommand;
-import de.mxscha.en.endoflife.commands.teleport.TpacceptCommand;
+import de.mxscha.en.endoflife.commands.teleport.*;
 import de.mxscha.en.endoflife.commands.world.BuildCommand;
 import de.mxscha.en.endoflife.commands.world.SetupCommand;
 import de.mxscha.en.endoflife.listener.player.*;
 import de.mxscha.en.endoflife.listener.shop.ShopAreaListener;
 import de.mxscha.en.endoflife.listener.shop.ShopListener;
 import de.mxscha.en.endoflife.listener.world.SpawnAreaWeatherChangeListener;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.item.inventory.InventoryOpener;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.job.entity.Employer;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.job.entity.Delivery;
+import de.mxscha.en.endoflife.utils.manager.item.inventory.InventoryOpener;
+import de.mxscha.en.endoflife.utils.manager.job.entity.Employer;
+import de.mxscha.en.endoflife.utils.manager.job.entity.Delivery;
+import de.mxscha.en.endoflife.utils.manager.job.entity.ToolSmith;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 
@@ -33,6 +32,7 @@ public class Register {
         pluginManager.registerEvents(new SpawnCommand(), core);
         pluginManager.registerEvents(new Employer(), core);
         pluginManager.registerEvents(new Delivery(), core);
+        pluginManager.registerEvents(new ToolSmith(), core);
         pluginManager.registerEvents(new VanishDamageListener(), core);
         pluginManager.registerEvents(new SpawnAreaWeatherChangeListener(), core);
         core.getCommand("setup").setExecutor(new SetupCommand());
@@ -50,12 +50,11 @@ public class Register {
         core.getCommand("tpaccept").setExecutor(new TpacceptCommand());
         core.getCommand("trade").setExecutor(new TradeCommand());
         core.getCommand("playerinfo").setExecutor(new AdminPlayerInfoCommand());
-        addEntities();
+        core.getCommand("help").setExecutor(new PlayerHelpCommand());
+        core.getCommand("head").setExecutor(new GiveHeadCommand());
+        core.getCommand("givekey").setExecutor(new GiveKeyCommand());
+        core.getCommand("sethome").setExecutor(new SetHomeCommand());
+        core.getCommand("home").setExecutor(new HomeCommand());
         InventoryOpener.initInventorys();
-    }
-
-    private static void addEntities() {
-        Employer.spawn();
-        Delivery.spawnAccept();
     }
 }

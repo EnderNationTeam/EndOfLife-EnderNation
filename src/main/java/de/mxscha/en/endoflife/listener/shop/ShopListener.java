@@ -1,10 +1,10 @@
 package de.mxscha.en.endoflife.listener.shop;
 
 import de.mxscha.en.endoflife.EndoflifeCore;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.item.ItemCreator;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.item.inventory.InventoryOpener;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.item.inventory.InventoryPropertys;
+import de.mxscha.en.endoflife.utils.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.manager.item.ItemCreator;
+import de.mxscha.en.endoflife.utils.manager.item.inventory.InventoryOpener;
+import de.mxscha.en.endoflife.utils.manager.item.inventory.InventoryPropertys;
 import de.mxscha.en.endoflife.utils.scoreboard.DefaultScoreboard;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;

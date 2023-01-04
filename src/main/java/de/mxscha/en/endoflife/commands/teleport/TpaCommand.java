@@ -1,7 +1,7 @@
 package de.mxscha.en.endoflife.commands.teleport;
 
 import de.mxscha.en.endoflife.EndoflifeCore;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.manager.chat.Messages;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;

@@ -1,7 +1,7 @@
 package de.mxscha.en.endoflife.commands.economy;
 
 import de.mxscha.en.endoflife.EndoflifeCore;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.manager.chat.Messages;
 import de.mxscha.en.endoflife.utils.scoreboard.DefaultScoreboard;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

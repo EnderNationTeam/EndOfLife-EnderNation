@@ -1,9 +1,9 @@
 package de.mxscha.en.endoflife.listener.player;
 
-import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.crate.CrateManager;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.item.ItemCreator;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.item.inventory.InventoryPropertys;
+import de.mxscha.en.endoflife.utils.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.manager.crate.CrateManager;
+import de.mxscha.en.endoflife.utils.manager.item.ItemCreator;
+import de.mxscha.en.endoflife.utils.manager.item.inventory.InventoryPropertys;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

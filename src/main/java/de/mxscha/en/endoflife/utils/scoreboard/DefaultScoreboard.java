@@ -1,6 +1,6 @@
 package de.mxscha.en.endoflife.utils.scoreboard;
 
-import de.mxscha.en.endoflife.utils.scoreboard.manager.chat.Messages;
+import de.mxscha.en.endoflife.utils.manager.chat.Messages;
 import de.mxscha.en.endoflife.utils.scoreboard.extras.ScoreboardBuilder;
 import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.utils.scoreboard.tablist.PlayerTablist;

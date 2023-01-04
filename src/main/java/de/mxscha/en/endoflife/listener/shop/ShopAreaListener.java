@@ -2,7 +2,7 @@ package de.mxscha.en.endoflife.listener.shop;
 
 import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.commands.world.BuildCommand;
-import de.mxscha.en.endoflife.utils.scoreboard.manager.location.ConfigLocationUtil;
+import de.mxscha.en.endoflife.utils.manager.location.ConfigLocationUtil;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

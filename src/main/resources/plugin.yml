@@ -23,3 +23,8 @@ commands:
   tpaccept:
   trade:
   playerinfo:
+  head:
+  givekey:
+  home:
+  sethome:
+  help:
