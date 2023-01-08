@@ -17,6 +17,7 @@ import java.util.HashMap;
 
 import static org.bukkit.Material.*;
 
+
 public class InventoryOpener {
 
     private static Inventory JobInventory;
@@ -187,17 +188,17 @@ public class InventoryOpener {
         JobInventoryFarmerInfo.setItem(27, new ItemCreator(Material.DIAMOND_HOE).setName("§8● §aFarmer Hacke").setLore("§7Baue Folgende Dinge Mit deiner §aFarmer Hacke §7ab!", "", "§6§lInfo§8: §7Bringe die Abgebauten Dinge zum Abgabeort", "        §7um eine Bohnuszahlung zu bekommen!").addItemFlag(ItemFlag.HIDE_ATTRIBUTES).toItemStack());
         makeGlassBorder(JobInventoryFarmerInfo);
         JobInventoryFarmerInfo.setItem(30, new ItemCreator(HONEY_BLOCK).setName("§8» §6Honig Block").setLore("  §7-§a" + Delivery.getFarmerMoney().get(HONEY_BLOCK) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(HONEY_BLOCK) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(31, new ItemCreator(Material.PUMPKIN).setName("§8» §6Kürbis").setLore("  §7-§a" + Delivery.getFarmerMoney().get(PUMPKIN) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(PUMPKIN) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(32, new ItemCreator(Material.POTATO).setName("§8» §eKartoffel").setLore("  §7-§a" + Delivery.getFarmerMoney().get(POTATO) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(POTATO) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(33, new ItemCreator(Material.CARROT).setName("§8» §6Karotte").setLore("  §7-§a" + Delivery.getFarmerMoney().get(CARROT) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(CARROT) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(39, new ItemCreator(Material.WHEAT).setName("§8» §aWeizen").setLore("  §7-§a" + Delivery.getFarmerMoney().get(WHEAT) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(WHEAT) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(40, new ItemCreator(Material.MELON_SLICE).setName("§8» §2Melone").setLore("  §7-§a" + Delivery.getFarmerMoney().get(MELON_SLICE) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(MELON_SLICE) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(41, new ItemCreator(Material.SUGAR_CANE).setName("§8» §aZuckerrohr").setLore("  §7-§a" + Delivery.getFarmerMoney().get(SUGAR_CANE) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(SUGAR_CANE) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(42, new ItemCreator(Material.BEETROOT).setName("§8» §cRotebete").setLore("  §7-§a" + Delivery.getFarmerMoney().get(BEETROOT) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(BEETROOT) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(48, new ItemCreator(Material.PUMPKIN_SEEDS).setName("§8» §eKürbiskerne").setLore("  §7-§a" + Delivery.getFarmerMoney().get(PUMPKIN_SEEDS) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(PUMPKIN_SEEDS) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(49, new ItemCreator(Material.MELON_SEEDS).setName("§8» §eMelonenkerne").setLore("  §7-§a" + Delivery.getFarmerMoney().get(MELON_SEEDS) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(MELON_SEEDS) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(50, new ItemCreator(Material.WHEAT_SEEDS).setName("§8» §eWeizensamen").setLore("  §7-§a" + Delivery.getFarmerMoney().get(WHEAT_SEEDS) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(WHEAT_SEEDS) + " XP").toItemStack());
-        JobInventoryFarmerInfo.setItem(51, new ItemCreator(Material.BEETROOT_SEEDS).setName("§8» §cRotebetesamen").setLore("  §7-§a" + Delivery.getFarmerMoney().get(BEETROOT_SEEDS) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(BEETROOT_SEEDS) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(31, new ItemCreator(PUMPKIN).setName("§8» §6Kürbis").setLore("  §7-§a" + Delivery.getFarmerMoney().get(PUMPKIN) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(PUMPKIN) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(32, new ItemCreator(POTATO).setName("§8» §eKartoffel").setLore("  §7-§a" + Delivery.getFarmerMoney().get(POTATO) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(POTATO) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(33, new ItemCreator(CARROT).setName("§8» §6Karotte").setLore("  §7-§a" + Delivery.getFarmerMoney().get(CARROT) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(CARROT) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(39, new ItemCreator(WHEAT).setName("§8» §aWeizen").setLore("  §7-§a" + Delivery.getFarmerMoney().get(WHEAT) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(WHEAT) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(40, new ItemCreator(MELON_SLICE).setName("§8» §2Melone").setLore("  §7-§a" + Delivery.getFarmerMoney().get(MELON_SLICE) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(MELON_SLICE) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(41, new ItemCreator(SUGAR_CANE).setName("§8» §aZuckerrohr").setLore("  §7-§a" + Delivery.getFarmerMoney().get(SUGAR_CANE) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(SUGAR_CANE) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(42, new ItemCreator(BEETROOT).setName("§8» §cRotebete").setLore("  §7-§a" + Delivery.getFarmerMoney().get(BEETROOT) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(BEETROOT) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(48, new ItemCreator(PUMPKIN_SEEDS).setName("§8» §eKürbiskerne").setLore("  §7-§a" + Delivery.getFarmerMoney().get(PUMPKIN_SEEDS) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(PUMPKIN_SEEDS) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(49, new ItemCreator(MELON_SEEDS).setName("§8» §eMelonenkerne").setLore("  §7-§a" + Delivery.getFarmerMoney().get(MELON_SEEDS) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(MELON_SEEDS) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(50, new ItemCreator(WHEAT_SEEDS).setName("§8» §eWeizensamen").setLore("  §7-§a" + Delivery.getFarmerMoney().get(WHEAT_SEEDS) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(WHEAT_SEEDS) + " XP").toItemStack());
+        JobInventoryFarmerInfo.setItem(51, new ItemCreator(BEETROOT_SEEDS).setName("§8» §cRotebetesamen").setLore("  §7-§a" + Delivery.getFarmerMoney().get(BEETROOT_SEEDS) + "€","  §7-" + TextColor.GREEN_2.get() + Delivery.getFarmerXP().get(BEETROOT_SEEDS) + " XP").toItemStack());
     }
 
     private static void makeGlassBorder(Inventory inventory) {
