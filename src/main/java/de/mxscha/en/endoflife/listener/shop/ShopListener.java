@@ -28,7 +28,8 @@ public class ShopListener implements Listener {
         if (trader.getCustomName() == null) return;
         if (trader.getCustomName().equals("§6§lShop")) {
             event.setCancelled(true);
-            InventoryOpener.open(player, 2);
+            // InventoryOpener.open(player, 2);
+            player.sendMessage(Messages.PREFIX.get() + "§cDer Shop ist derzeit in Arbeit!");
         }
     }
 

@@ -50,6 +50,11 @@ public class SetupCommand implements CommandExecutor {
                                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                                 player.sendMessage(Messages.PREFIX.get() + "§7Du hast den Tool Smith gesetzt!");
                             }
+                            if (args[1].equalsIgnoreCase("rtp")) {
+                                new ConfigLocationUtil(player.getLocation(),"RandomTeleport").saveLocation();
+                                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                                player.sendMessage(Messages.PREFIX.get() + "§7Du hast den Random Teleport gesetzt!");
+                            }
                         }
                         break;
                     case 3:

@@ -1,21 +1,20 @@
 package de.mxscha.en.endoflife;
 
 import de.mxscha.en.endoflife.utils.manager.backpack.config.BackpackAPI;
+import de.mxscha.en.endoflife.utils.manager.chat.Messages;
 import de.mxscha.en.endoflife.utils.manager.home.HomeManager;
 import de.mxscha.en.endoflife.utils.manager.item.clear.ClearLagManager;
 import de.mxscha.en.endoflife.utils.manager.job.JobActionBarInfoManager;
-import de.mxscha.en.endoflife.utils.manager.job.entity.Shop;
-import de.mxscha.en.endoflife.utils.manager.job.entity.ToolSmith;
+import de.mxscha.en.endoflife.utils.manager.job.entity.*;
 import de.mxscha.en.endoflife.utils.manager.region.Region;
 import de.mxscha.en.endoflife.utils.manager.backpack.manager.BackpackManager;
-import de.mxscha.en.endoflife.utils.manager.job.entity.Employer;
 import de.mxscha.en.endoflife.utils.manager.job.api.JobAPI;
-import de.mxscha.en.endoflife.utils.manager.job.entity.Delivery;
 import de.mxscha.en.endoflife.utils.manager.location.LocationsConfig;
 import de.mxscha.en.endoflife.utils.manager.money.Money;
 import de.mxscha.en.endoflife.utils.manager.money.api.MoneyAPI;
 import de.mxscha.en.endoflife.utils.database.mysql.MySQL;
 import de.mxscha.en.endoflife.utils.Register;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class EndoflifeCore extends JavaPlugin {
@@ -33,10 +32,12 @@ public final class EndoflifeCore extends JavaPlugin {
     ToolSmith smith = new ToolSmith();
     Employer employer = new Employer();
     Delivery delivery = new Delivery();
+    RandomTeleport randomTeleport = new RandomTeleport();
 
     @Override
     public void onEnable() {
         instance = this;
+        initMySQLConfig();
         Register.init(instance);
         backpackAPI = new BackpackAPI();
         backpackAPI.createTables();
@@ -47,13 +48,14 @@ public final class EndoflifeCore extends JavaPlugin {
         homeManager = new HomeManager();
 
         moneyAPI.createTables();
-        // homeManager.createTables();
+        homeManager.createTables();
         jobAPI.createTables();
 
         shop.spawn();
         smith.spawn();
         employer.spawn();
         delivery.spawn();
+        randomTeleport.spawn();
 
         Money.setApi(moneyAPI);
 
@@ -65,16 +67,38 @@ public final class EndoflifeCore extends JavaPlugin {
 
     @Override
     public void onLoad() {
-        initMySQL();
+        connectToMySQL();
     }
 
-    private void initMySQL() {
-        this.mySQL = MySQL.newBuilder().withUrl("localhost")
-                .withPort(3306)
-                .withDatabase("EndOfLife")
-                .withUser("EndOfLife")
-                .withPassword("")
-                .create();
+    private void initMySQLConfig() {
+        if (!getConfig().contains("MySQL.url")) {
+            getConfig().set("MySQL.url", "url");
+            getConfig().set("MySQL.port", "port");
+            getConfig().set("MySQL.database", "database");
+            getConfig().set("MySQL.user", "user");
+            getConfig().set("MySQL.password", "password");
+        }
+        saveConfig();
+    }
+
+    private void connectToMySQL() {
+        String url = "";
+        int port = 0;
+        String database = "";
+        String user = "";
+        String password = "";
+        try {
+            url = getConfig().getString("MySQL.url");
+            port = getConfig().getInt("MySQL.port");
+            database = getConfig().getString("MySQL.database");
+            user = getConfig().getString("MySQL.user");
+            password = getConfig().getString("MySQL.password");
+        } catch (Exception e) {
+            Bukkit.getConsoleSender().sendMessage(Messages.PREFIX.get() + "Verbinden der Daten ist etwas schiefgelaufen!");
+        }
+        if (password == null)
+            password = "";
+        this.mySQL = MySQL.newBuilder().withUrl(url).withPort(port).withDatabase(database).withUser(user).withPassword(password).create();
     }
 
     @Override
@@ -85,6 +109,7 @@ public final class EndoflifeCore extends JavaPlugin {
         smith.despawn();
         shop.despawn();
         delivery.despawn();
+        randomTeleport.despawn();
     }
 
     public HomeManager getHomeManager() {

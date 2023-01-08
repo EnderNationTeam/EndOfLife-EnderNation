@@ -83,6 +83,9 @@ public class CrateListener implements Listener {
             if (isBlockCrate(bottom)) {
                 switch (underCrate.getType()) {
                     case COAL_BLOCK -> {
+                        player.sendMessage(Messages.PREFIX.get() + "§cDie Lootboxen sind derzeit in Arbeit!");
+                        String art = "coal";
+                        /*
                         if (event.getAction() == Action.LEFT_CLICK_BLOCK) {
                             event.setCancelled(true);
 
@@ -112,6 +115,7 @@ public class CrateListener implements Listener {
                                     player.sendMessage(Messages.PREFIX.get() + "§cBitte öffne nur eine Kiste gleichzeitig!");
                             }
                         }
+                         */
                     }
                     case WAXED_COPPER_BLOCK -> {
                         player.sendMessage(Messages.PREFIX.get() + "§cDie Lootboxen sind derzeit in Arbeit!");

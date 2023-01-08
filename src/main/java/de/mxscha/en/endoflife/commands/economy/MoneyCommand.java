@@ -9,13 +9,16 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import java.text.DecimalFormat;
+
 public class MoneyCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
             if (player.hasPermission("endoflife.money")) {
                 if (args.length == 0) {
-                    player.sendMessage(Messages.PREFIX.get() + "§7Du hast§8: §c" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)+"€");
+                    DecimalFormat f = new DecimalFormat("#0.00");
+                    player.sendMessage(Messages.PREFIX.get() + "§7Du hast§8: §c" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(player))+"€");
                 } else {
                     if (args.length == 3) {
                         switch (args[0]) {

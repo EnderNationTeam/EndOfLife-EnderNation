@@ -15,6 +15,7 @@ import de.mxscha.en.endoflife.listener.world.SpawnAreaWeatherChangeListener;
 import de.mxscha.en.endoflife.utils.manager.item.inventory.InventoryOpener;
 import de.mxscha.en.endoflife.utils.manager.job.entity.Employer;
 import de.mxscha.en.endoflife.utils.manager.job.entity.Delivery;
+import de.mxscha.en.endoflife.utils.manager.job.entity.RandomTeleport;
 import de.mxscha.en.endoflife.utils.manager.job.entity.ToolSmith;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
@@ -33,6 +34,7 @@ public class Register {
         pluginManager.registerEvents(new Employer(), core);
         pluginManager.registerEvents(new Delivery(), core);
         pluginManager.registerEvents(new ToolSmith(), core);
+        pluginManager.registerEvents(new RandomTeleport(), core);
         pluginManager.registerEvents(new VanishDamageListener(), core);
         pluginManager.registerEvents(new SpawnAreaWeatherChangeListener(), core);
         core.getCommand("setup").setExecutor(new SetupCommand());
@@ -55,6 +57,7 @@ public class Register {
         core.getCommand("givekey").setExecutor(new GiveKeyCommand());
         core.getCommand("sethome").setExecutor(new SetHomeCommand());
         core.getCommand("home").setExecutor(new HomeCommand());
+        core.getCommand("job").setExecutor(new JobQuitCommand());
         InventoryOpener.initInventorys();
     }
 }

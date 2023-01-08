@@ -1,5 +1,6 @@
 package de.mxscha.en.endoflife.listener.player;
 
+import de.mxscha.en.endoflife.commands.player.VanishCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,5 +12,9 @@ public class QuitListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         event.setQuitMessage(null);
+        if (VanishCommand.getVanishedPlayers().contains(player)) {
+            VanishCommand vanishCommand = new VanishCommand();
+            vanishCommand.setUnVanished(player);
+        }
     }
 }

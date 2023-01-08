@@ -32,7 +32,7 @@ public class VanishCommand implements CommandExecutor {
         return false;
     }
 
-    private void setUnVanished(Player player) {
+    public void setUnVanished(Player player) {
         vanish.remove(player);
         if (player.getGameMode() != GameMode.CREATIVE) {
             player.setFlying(false);
@@ -45,15 +45,15 @@ public class VanishCommand implements CommandExecutor {
         player.removePotionEffect(PotionEffectType.INVISIBILITY);
     }
 
-    private void setVanished(Player player) {
+    public void setVanished(Player player) {
         vanish.add(player);
         player.sendMessage(Messages.SET_VANISHED.get());
         for (Player online : Bukkit.getOnlinePlayers()) {
             online.hidePlayer(EndoflifeCore.getInstance(), player);
         }
         if (player.getGameMode() != GameMode.CREATIVE) {
-            player.setFlying(true);
             player.setAllowFlight(true);
+            player.setFlying(true);
         }
         player.addPotionEffect(PotionEffectType.INVISIBILITY.createEffect(1200000000, 1));
     }

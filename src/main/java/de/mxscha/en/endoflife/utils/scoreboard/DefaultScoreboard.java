@@ -6,6 +6,8 @@ import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.utils.scoreboard.tablist.PlayerTablist;
 import org.bukkit.entity.Player;
 
+import java.text.DecimalFormat;
+
 public class DefaultScoreboard extends ScoreboardBuilder {
 
     private int id;
@@ -40,17 +42,18 @@ public class DefaultScoreboard extends ScoreboardBuilder {
         } else if (player.hasPermission("rang.youtuber")) {
             setScore("  §8» §5§lYou§f§lTuber", 8);
         } else if (player.hasPermission("rang.enderhacker")) {
-            setScore("  §8» §5§lEnder§b§lHacker", 8);
+            setScore("  §8» §3§lEnder§b§lHacker", 8);
         } else if (player.hasPermission("rang.enderhero")) {
-            setScore("  §8» §5§lEnder§5§lHero", 8);
+            setScore("  §8» §3§lEnder§5§lHero", 8);
         } else if (player.hasPermission("rang.enderking")) {
-            setScore("  §8» &5Ender§6§lKing", 8);
+            setScore("  §8» &3Ender§6§lKing", 8);
         } else if (player.hasPermission("rang.spieler") || player.hasPermission("rang.default")) {
-            setScore("  §8» §7§lSpieler", 8);
+            setScore("  §8» §d§lBeta", 8);
         }
         setScore("§a", 7);
         setScore("§8● §7Dein Geld§8:", 6);
-        setScore("  §8» §c" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(player) + "€", 5);
+        DecimalFormat f = new DecimalFormat("#0.00");
+        setScore("  §8» §c" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)) + "€", 5);
         setScore("§b", 4);
         setScore("§8● §7Dein Job§8:", 3);
         switch (EndoflifeCore.getInstance().getJobAPI().getJob(player)) {
@@ -94,17 +97,18 @@ public class DefaultScoreboard extends ScoreboardBuilder {
         } else if (player.hasPermission("rang.youtuber")) {
             setScore("  §8» §5§lYou§f§lTuber", 8);
         } else if (player.hasPermission("rang.enderhacker")) {
-            setScore("  §8» §5§lEnder§b§lHacker", 8);
+            setScore("  §8» §3§lEnder§b§lHacker", 8);
         } else if (player.hasPermission("rang.enderhero")) {
-            setScore("  §8» §5§lEnder§5§lHero", 8);
+            setScore("  §8» §3§lEnder§5§lHero", 8);
         } else if (player.hasPermission("rang.enderking")) {
-            setScore("  §8» &5Ender§6§lKing", 8);
+            setScore("  §8» &3Ender§6§lKing", 8);
         } else if (player.hasPermission("rang.spieler") || player.hasPermission("rang.default")) {
-            setScore("  §8» §7§lSpieler", 8);
+            setScore("  §8» §d§lBeta", 8);
         }
         setScore("§a", 7);
         setScore("§8● §7Dein Geld§8:", 6);
-        setScore("  §8» §c" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(player) + "€", 5);
+        DecimalFormat f = new DecimalFormat("#0.00");
+        setScore("  §8» §c" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)) + "€", 5);
         setScore("§b", 4);
         setScore("§8● §7Dein Job§8:", 3);
         switch (EndoflifeCore.getInstance().getJobAPI().getJob(player)) {

@@ -67,8 +67,40 @@ public class TpaCommand implements CommandExecutor {
                                             }
                                         }
                                     }.runTaskLater(EndoflifeCore.getInstance(), 20*60);
-                                } else
-                                    player.sendMessage(Messages.PREFIX.get() + "§cDu hast diesem Spieler bereits eine Teleportanfrage gesendet!");
+                                } else {
+                                    if (request.containsKey(player)) {
+                                        player.sendMessage(Messages.PREFIX.get() + "§cDu hast diesem Spieler bereits eine Teleportanfrage gesendet!");
+                                    } else {
+                                        request.put(player, target);
+                                        player.sendMessage(Messages.PREFIX.get() + "§7Du hast §e" + target.getName() + "§7 eine Teleportanfrage gesendet!");
+                                        target.sendMessage(Messages.PREFIX.get() + "§7Du hast eine Teleportanfrage von §e" + player.getName() + " §7erhalten!");
+                                        var E = new TextComponent("E"); E.setBold(true); E.setColor(net.md_5.bungee.api.ChatColor.of("#0D2CA6"));
+                                        var N = new TextComponent("n"); N.setBold(true); N.setColor(net.md_5.bungee.api.ChatColor.of("#113BDF"));
+                                        var D = new TextComponent("d"); D.setBold(true); D.setColor(net.md_5.bungee.api.ChatColor.of("#0738FB"));
+                                        var O = new TextComponent("O"); O.setBold(true); O.setColor(net.md_5.bungee.api.ChatColor.of("#C1CBF4"));
+                                        var F = new TextComponent("f"); F.setBold(true); F.setColor(net.md_5.bungee.api.ChatColor.of("#FFFFFF"));
+                                        var L = new TextComponent("L"); L.setBold(true); L.setColor(net.md_5.bungee.api.ChatColor.of("#BAFADE"));
+                                        var I = new TextComponent("i"); I.setBold(true); I.setColor(net.md_5.bungee.api.ChatColor.of("#48E4A0"));
+                                        var f = new TextComponent("f"); f.setBold(true); f.setColor(net.md_5.bungee.api.ChatColor.of("#2DD58C"));
+                                        var e = new TextComponent("e"); e.setBold(true); e.setColor(net.md_5.bungee.api.ChatColor.of("#0FBE72"));
+                                        var middle = new TextComponent(" §8| §8[");
+                                        var klammer = new TextComponent("§8]");
+                                        var component = new TextComponent("Annehmen");
+                                        component.setBold(true);
+                                        component.setColor(net.md_5.bungee.api.ChatColor.of("#17F604"));
+                                        component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Annehmen").color(ChatColor.of("#17F604")).create()));
+                                        component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpaccept " + player.getName()));
+                                        target.sendMessage(E, N, D, O, F, L, I, f, e, middle, component,klammer);
+                                        new BukkitRunnable() {
+                                            @Override
+                                            public void run() {
+                                                if (request.containsKey(player)) {
+                                                    player.sendMessage(Messages.PREFIX.get() + "§cDeine Teleportanfrage an §e" + target.getName() + " §cist abgelaufen!");
+                                                }
+                                            }
+                                        }.runTaskLater(EndoflifeCore.getInstance(), 20*60);
+                                    }
+                                }
                             }
                         } else
                             player.sendMessage(Messages.PLAYER_NOT_FOUND.get());

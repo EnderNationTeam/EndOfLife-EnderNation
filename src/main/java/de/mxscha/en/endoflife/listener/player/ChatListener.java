@@ -56,7 +56,7 @@ public class ChatListener implements Listener {
             event.setFormat("&5Ender§6§lKing §8» §7" + player.getName() + "§8: §f" + msg);
         } else
         if (player.hasPermission("rang.default")) {
-            event.setFormat("§7§lSpieler §8» §7" + player.getName() + "§8: §7" + msg);
+            event.setFormat("§d§lBeta §8» §7" + player.getName() + "§8: §7" + msg);
         }
     }
 }

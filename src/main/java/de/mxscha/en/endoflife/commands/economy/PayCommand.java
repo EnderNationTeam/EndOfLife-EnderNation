@@ -25,7 +25,7 @@ public class PayCommand implements CommandExecutor {
                 case 2 -> {
                     if (args[1].equalsIgnoreCase("all")) {
                             String playername = args[0];
-                            int amount = EndoflifeCore.getInstance().getMoneyAPI().getMoney(player);
+                            double amount = EndoflifeCore.getInstance().getMoneyAPI().getMoney(player);
                             Player target = Bukkit.getPlayer(playername);
                             if (target == null) {
                                 player.sendMessage(Messages.PLAYER_NOT_FOUND.get());
@@ -46,7 +46,7 @@ public class PayCommand implements CommandExecutor {
                     } else {
                         try {
                             String playername = args[0];
-                            int amount = Integer.parseInt(args[1]);
+                            double amount = Double.parseDouble(args[1]);
                             Player target = Bukkit.getPlayer(playername);
                             if (target == null) {
                                 player.sendMessage(Messages.PLAYER_NOT_FOUND.get());
