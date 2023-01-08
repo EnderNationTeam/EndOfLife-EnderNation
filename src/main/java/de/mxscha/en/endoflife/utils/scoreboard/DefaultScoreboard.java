@@ -53,7 +53,7 @@ public class DefaultScoreboard extends ScoreboardBuilder {
         setScore("§a", 7);
         setScore("§8● §7Dein Geld§8:", 6);
         DecimalFormat f = new DecimalFormat("#0.00");
-        setScore("  §8» §c" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)) + "€", 5);
+        setScore("  §8» §a" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)) + "€", 5);
         setScore("§b", 4);
         setScore("§8● §7Dein Job§8:", 3);
         switch (EndoflifeCore.getInstance().getJobAPI().getJob(player)) {
@@ -108,7 +108,7 @@ public class DefaultScoreboard extends ScoreboardBuilder {
         setScore("§a", 7);
         setScore("§8● §7Dein Geld§8:", 6);
         DecimalFormat f = new DecimalFormat("#0.00");
-        setScore("  §8» §c" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)) + "€", 5);
+        setScore("  §8» §a" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)) + "€", 5);
         setScore("§b", 4);
         setScore("§8● §7Dein Job§8:", 3);
         switch (EndoflifeCore.getInstance().getJobAPI().getJob(player)) {

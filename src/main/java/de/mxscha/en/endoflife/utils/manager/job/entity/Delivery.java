@@ -275,7 +275,7 @@ public class Delivery extends NPC implements Listener {
                             EndoflifeCore.getInstance().getMoneyAPI().addMoney(player, money);
                             new DefaultScoreboard(player).update();
                             DecimalFormat f = new DecimalFormat("#0.00");
-                            player.sendMessage(Messages.PREFIX.get() + "§7Du hast " + TextColor.GREEN_2.get() + "§l"+xp+"XP §7& §c"+f.format(money)+"€ §7bekommen!");
+                            player.sendMessage(Messages.PREFIX.get() + "§7Du hast " + TextColor.GREEN_2.get() + "§l"+xp+"XP §7& §a"+f.format(money)+" € §7bekommen!");
                         } else
                             player.sendMessage(Messages.PREFIX.get() + "§cDu hast nichts zum verkaufen!");
                     }
