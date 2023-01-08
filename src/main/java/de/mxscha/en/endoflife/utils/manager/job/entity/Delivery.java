@@ -36,14 +36,14 @@ public class Delivery extends NPC implements Listener {
     private static final HashMap<Material, Double> farmerMoney = new HashMap<>();
 
     public static void registerMoneyMaps() {
-        farmerMoney.put(CARROT, 0.50);
-        farmerMoney.put(POTATO, 0.50);
-        farmerMoney.put(WHEAT, 0.50);
-        farmerMoney.put(MELON_SLICE, 1.00);
-        farmerMoney.put(HONEY_BLOCK, 5.00);
-        farmerMoney.put(PUMPKIN, 2.50);
-        farmerMoney.put(SUGAR_CANE, 0.10);
-        farmerMoney.put(BEETROOT, 0.50);
+        farmerMoney.put(CARROT, 0.20);
+        farmerMoney.put(POTATO, 0.20);
+        farmerMoney.put(WHEAT, 0.20);
+        farmerMoney.put(MELON_SLICE, 0.70);
+        farmerMoney.put(HONEY_BLOCK, 4.70);
+        farmerMoney.put(PUMPKIN, 2.10);
+        farmerMoney.put(SUGAR_CANE, 0.05);
+        farmerMoney.put(BEETROOT, 0.20);
         farmerMoney.put(PUMPKIN_SEEDS, 0.01);
         farmerMoney.put(COCOA_BEANS, 0.05);
         farmerMoney.put(MELON_SEEDS, 0.01);
@@ -52,15 +52,15 @@ public class Delivery extends NPC implements Listener {
     }
 
     public static void registerXpMaps() {
-        farmerXP.put(HONEY_BLOCK, 3);
-        farmerXP.put(PUMPKIN, 2);
-        farmerXP.put(CARROT, 1);
-        farmerXP.put(POTATO, 1);
-        farmerXP.put(WHEAT, 1);
-        farmerXP.put(BEETROOT, 1);
-        farmerXP.put(MELON_SLICE, 2);
-        farmerXP.put(SUGAR_CANE, 1);
-        farmerXP.put(COCOA_BEANS, 1);
+        farmerXP.put(HONEY_BLOCK, 5);
+        farmerXP.put(PUMPKIN, 4);
+        farmerXP.put(CARROT, 3);
+        farmerXP.put(POTATO, 3);
+        farmerXP.put(WHEAT, 3);
+        farmerXP.put(BEETROOT, 3);
+        farmerXP.put(MELON_SLICE, 4);
+        farmerXP.put(SUGAR_CANE, 2);
+        farmerXP.put(COCOA_BEANS, 2);
         farmerXP.put(PUMPKIN_SEEDS, 0);
         farmerXP.put(MELON_SEEDS, 0);
         farmerXP.put(BEETROOT_SEEDS, 0);
