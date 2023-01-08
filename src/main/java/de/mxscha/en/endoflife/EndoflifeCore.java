@@ -38,6 +38,8 @@ public final class EndoflifeCore extends JavaPlugin {
     public void onEnable() {
         instance = this;
         initMySQLConfig();
+        Delivery.registerXpMaps();
+        Delivery.registerMoneyMaps();
         Register.init(instance);
         backpackAPI = new BackpackAPI();
         backpackAPI.createTables();
@@ -60,8 +62,6 @@ public final class EndoflifeCore extends JavaPlugin {
         Money.setApi(moneyAPI);
 
         ClearLagManager.start();
-        Delivery.registerXpMaps();
-        Delivery.registerMoneyMaps();
         JobActionBarInfoManager.send();
     }
 
