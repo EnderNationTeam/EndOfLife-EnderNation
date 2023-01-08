@@ -52,15 +52,15 @@ public class Delivery extends NPC implements Listener {
     }
 
     public static void registerXpMaps() {
-        farmerXP.put(HONEY_BLOCK, 5);
-        farmerXP.put(PUMPKIN, 4);
-        farmerXP.put(CARROT, 3);
-        farmerXP.put(POTATO, 3);
-        farmerXP.put(WHEAT, 3);
-        farmerXP.put(BEETROOT, 3);
-        farmerXP.put(MELON_SLICE, 4);
-        farmerXP.put(SUGAR_CANE, 2);
-        farmerXP.put(COCOA_BEANS, 2);
+        farmerXP.put(HONEY_BLOCK, 3);
+        farmerXP.put(PUMPKIN, 2);
+        farmerXP.put(CARROT, 1);
+        farmerXP.put(POTATO, 1);
+        farmerXP.put(WHEAT, 1);
+        farmerXP.put(BEETROOT, 1);
+        farmerXP.put(MELON_SLICE, 2);
+        farmerXP.put(SUGAR_CANE, 1);
+        farmerXP.put(COCOA_BEANS, 1);
         farmerXP.put(PUMPKIN_SEEDS, 0);
         farmerXP.put(MELON_SEEDS, 0);
         farmerXP.put(BEETROOT_SEEDS, 0);
