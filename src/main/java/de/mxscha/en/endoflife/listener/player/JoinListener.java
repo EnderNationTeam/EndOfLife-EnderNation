@@ -1,10 +1,13 @@
 package de.mxscha.en.endoflife.listener.player;
 
 import de.mxscha.en.endoflife.EndoflifeCore;
+import de.mxscha.en.endoflife.commands.player.VanishCommand;
+import de.mxscha.en.endoflife.utils.manager.home.Home;
 import de.mxscha.en.endoflife.utils.manager.item.ItemCreator;
 import de.mxscha.en.endoflife.utils.manager.location.ConfigLocationUtil;
 import de.mxscha.en.endoflife.utils.scoreboard.DefaultScoreboard;
 import de.mxscha.en.endoflife.utils.scoreboard.tablist.PlayerTablist;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
@@ -29,6 +32,11 @@ public class JoinListener implements Listener {
             Location location = new ConfigLocationUtil("Spawn").loadLocation();
             if (location == null) return;
             player.teleport(location);
+        }
+
+        // Vanish
+        for(Player vanishPlayer : VanishCommand.getVanishedPlayers()) {
+            player.hidePlayer(EndoflifeCore.getInstance(), vanishPlayer);
         }
     }
 
