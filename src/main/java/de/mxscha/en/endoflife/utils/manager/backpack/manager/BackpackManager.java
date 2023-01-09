@@ -56,7 +56,7 @@ public class BackpackManager {
             try {
                 map.put(uuid, new Backpack(uuid, base64, 4));
             } catch (Exception e) {
-                e.printStackTrace();
+                Bukkit.broadcastMessage("§cBackpacks konnten nicht geladen werden!");
             }
         });
     }
