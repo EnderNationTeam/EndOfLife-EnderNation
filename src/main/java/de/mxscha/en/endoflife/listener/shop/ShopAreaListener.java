@@ -10,7 +10,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class ShopAreaListener implements Listener {
 
@@ -70,5 +72,20 @@ public class ShopAreaListener implements Listener {
                 }
             }
         }
+    }
+
+    @EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
+        Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
+        if (EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), shopLocation1, shopLocation2)) {
+            if (player.getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+                if (!BuildCommand.getBuild().contains(player)) {
+                    event.setCancelled(true);
+                }
+            }
+        }
+
     }
 }

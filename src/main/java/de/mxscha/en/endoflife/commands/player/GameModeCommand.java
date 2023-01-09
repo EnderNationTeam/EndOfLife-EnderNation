@@ -23,6 +23,17 @@ public class GameModeCommand implements CommandExecutor, TabCompleter {
             if (player.hasPermission("endoflife.gamemode")) {
                 switch (args.length) {
                     case 0:
+                        if(player.getGameMode().equals(GameMode.CREATIVE)) {
+                            player.setGameMode(GameMode.SURVIVAL);
+                            player.sendMessage(Messages.PREFIX.get() + "§7Du bist nun im §4§lSURVIVAL-MODE§7!");
+                            player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                        } else {
+                            player.setGameMode(GameMode.CREATIVE);
+                            player.sendMessage(Messages.PREFIX.get() + "§7Du bist nun im §4§lCREATIVE-MODE§7!");
+                            player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                        }
+
+                        break;
                     case 1:
                         if(args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("survival")) {
                             player.setGameMode(GameMode.SURVIVAL);
