@@ -26,7 +26,8 @@ public class MoneyCommand implements CommandExecutor {
                                 try {
                                     Player target = Bukkit.getPlayer(args[1]);
                                     EndoflifeCore.getInstance().getMoneyAPI().setMoney(target, Double.parseDouble(args[2]));
-                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §a" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
+                                    DecimalFormat f = new DecimalFormat("#0.00");
+                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §a" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(target)) + "€§7!");
                                     new DefaultScoreboard(target).update();
                                     new DefaultScoreboard(player).update();
                                } catch (Exception e) {
@@ -37,7 +38,8 @@ public class MoneyCommand implements CommandExecutor {
                                 try {
                                     Player target = Bukkit.getPlayer(args[1]);
                                     EndoflifeCore.getInstance().getMoneyAPI().addMoney(target, Double.parseDouble(args[2]));
-                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §a" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
+                                    DecimalFormat f = new DecimalFormat("#0.00");
+                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §a" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(target)) + "€§7!");
                                     new DefaultScoreboard(target).update();
                                     new DefaultScoreboard(player).update();
                                 } catch (Exception e) {
@@ -48,7 +50,8 @@ public class MoneyCommand implements CommandExecutor {
                                 try {
                                     Player target = Bukkit.getPlayer(args[1]);
                                     EndoflifeCore.getInstance().getMoneyAPI().removeMoney(target, Double.parseDouble(args[2]));
-                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §c" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
+                                    DecimalFormat f = new DecimalFormat("#0.00");
+                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §c" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(target)) + "€§7!");
                                     new DefaultScoreboard(target).update();
                                     new DefaultScoreboard(player).update();
                                     new DefaultScoreboard(player).update();
