@@ -94,11 +94,11 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         List<String> arguments = new ArrayList<>();
-        if (args.length == 0){
+        if (args.length == 1){
             arguments.add("set");
         }
 
-        if (args.length == 1){
+        if (args.length == 2){
             arguments.add("employer");
             arguments.add("shop");
             arguments.add("accepter");
@@ -108,11 +108,11 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
             arguments.add("region");
         }
 
-        if (args.length == 2){
+        if (args.length == 3){
             arguments.add("shop");
         }
 
-        if (args.length == 3){
+        if (args.length == 4){
             arguments.add("1");
             arguments.add("2");
         }
