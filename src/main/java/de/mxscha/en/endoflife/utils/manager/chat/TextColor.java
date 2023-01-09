@@ -15,6 +15,7 @@ public enum TextColor {
     TPA_1(ChatColor.of("#98358F")),
     TPA_2(ChatColor.of("#A62C9B")),
     TPA_3(ChatColor.of("#AF2CA3")),
+    FARMER_JOB(ChatColor.of("#52E280")),
     DARKER_GREEN(ChatColor.of("#0FBE72"));
 
     private ChatColor color;
