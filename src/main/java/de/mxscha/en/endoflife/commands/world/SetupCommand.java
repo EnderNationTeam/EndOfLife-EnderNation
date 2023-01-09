@@ -6,9 +6,15 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class SetupCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class SetupCommand implements CommandExecutor, TabCompleter {
 
     // setup set Region Shop 1,2
 
@@ -83,5 +89,34 @@ public class SetupCommand implements CommandExecutor {
                 player.sendMessage(Messages.NO_PERM.get());
         }
         return false;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        List<String> arguments = new ArrayList<>();
+        if (args.length == 0){
+            arguments.add("set");
+        }
+
+        if (args.length == 1){
+            arguments.add("employer");
+            arguments.add("shop");
+            arguments.add("accepter");
+            arguments.add("smith");
+            arguments.add("rtp");
+
+            arguments.add("region");
+        }
+
+        if (args.length == 2){
+            arguments.add("shop");
+        }
+
+        if (args.length == 3){
+            arguments.add("1");
+            arguments.add("2");
+        }
+
+        return arguments;
     }
 }

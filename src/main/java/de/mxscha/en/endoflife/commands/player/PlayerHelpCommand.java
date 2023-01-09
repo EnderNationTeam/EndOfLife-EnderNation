@@ -26,7 +26,7 @@ public class PlayerHelpCommand implements CommandExecutor {
         if (sender instanceof Player player) {
             switch (args.length) {
                 case 0:
-                    player.sendMessage("                       " + Messages.PPREFIX.get() + "§69-Help[1/2]                       ");
+                    player.sendMessage("                       " + Messages.PPREFIX.get() + "§9-Help[1/2]                       ");
                     player.sendMessage(" §8● §e/spawn §8» §7Teleportiere dich zum Spawn!");
                     player.sendMessage(" §8● §e/sethome §8» §7Setze dein Zuhause!");
                     player.sendMessage(" §8● §e/home §8» §7Teleportiere dich zu deinem Zuhause!");
@@ -39,7 +39,7 @@ public class PlayerHelpCommand implements CommandExecutor {
                     break;
                 case 1:
                     if (args[0].equals("2")) {
-                        player.sendMessage("                       " + Messages.PPREFIX.get() + "§69-Help[2/2]                       ");
+                        player.sendMessage("                       " + Messages.PPREFIX.get() + "§9-Help[2/2]                       ");
                         player.sendMessage(" §8● §e/tpa §8» §7Sende eine Teleportanfrage!");
                         player.sendMessage(" §8● §e/tpaccept §8» §7Nehme die Teleportanfrage an!!");
                         player.sendMessage(" §8● §e/tpahere §8» §7Sende eine Teleportanfrage!");
