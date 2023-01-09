@@ -29,7 +29,6 @@ public class MoneyCommand implements CommandExecutor {
                                     DecimalFormat f = new DecimalFormat("#0.00");
                                     player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §a" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(target)) + "€§7!");
                                     new DefaultScoreboard(target).update();
-                                    new DefaultScoreboard(player).update();
                                } catch (Exception e) {
                                     player.sendMessage(Messages.PREFIX.get() + "§cDieser Spieler ist nicht Online!");
                                 }
@@ -41,7 +40,6 @@ public class MoneyCommand implements CommandExecutor {
                                     DecimalFormat f = new DecimalFormat("#0.00");
                                     player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §a" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(target)) + "€§7!");
                                     new DefaultScoreboard(target).update();
-                                    new DefaultScoreboard(player).update();
                                 } catch (Exception e) {
                                     player.sendMessage(Messages.PREFIX.get() + "§cDieser Spieler ist nicht Online!");
                                 }
@@ -53,8 +51,6 @@ public class MoneyCommand implements CommandExecutor {
                                     DecimalFormat f = new DecimalFormat("#0.00");
                                     player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §c" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(target)) + "€§7!");
                                     new DefaultScoreboard(target).update();
-                                    new DefaultScoreboard(player).update();
-                                    new DefaultScoreboard(player).update();
                                 } catch (Exception e) {
                                     player.sendMessage(Messages.PREFIX.get() + "§cDieser Spieler ist nicht Online!");
                                 }
