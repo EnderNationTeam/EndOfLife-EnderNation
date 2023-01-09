@@ -7,9 +7,15 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public class GameModeCommand implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class GameModeCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -75,5 +81,31 @@ public class GameModeCommand implements CommandExecutor {
                 player.sendMessage(Messages.NO_PERM.get());
         }
         return false;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (args.length == 1){
+            List<String> arguments = new ArrayList<>();
+            arguments.add("0");
+            arguments.add("1");
+            arguments.add("2");
+            arguments.add("3");
+            arguments.add("survival");
+            arguments.add("creative");
+            arguments.add("adventure");
+            arguments.add("spectator");
+            return arguments;
+        }
+
+        if (args.length == 2){
+            List<String> playerNames = new ArrayList<>();
+            for (Player all : Bukkit.getOnlinePlayers()){
+                playerNames.add(all.getName());
+            }
+            return playerNames;
+        }
+
+        return new ArrayList<>();
     }
 }

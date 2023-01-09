@@ -16,33 +16,20 @@ public class SetHomeCommand implements CommandExecutor {
             int maxHomes = 3;
 
             for(int i = 500; i > 0; i--) {
-                if(player.hasPermission("endoflife.sethome.max." + i)) {
+                if(player.hasPermission("endoflife.home.max." + i)) {
                     maxHomes = i;
                     break;
                 }
             }
 
-            /*
-            if(player.hasPermission("endoflife.sethome.max.5")) maxHomes = 5;
-            if(player.hasPermission("endoflife.sethome.max.10")) maxHomes = 10;
-            if(player.hasPermission("endoflife.sethome.max.15")) maxHomes = 15;
-             */
-
             if(maxHomes == EndoflifeCore.getInstance().getHomeManager().getHomes(player).getList().size()) {
                 player.sendMessage(Messages.PREFIX.get() + "§cDu hast bereits dein maximales Home Limit erreicht!");
                 return false;
             }
-
-            if (args.length == 1) {
-                Home home = EndoflifeCore.getInstance().getHomeManager().getHome(player, args[0]);
-                if (home == null) {
-                    EndoflifeCore.getInstance().getHomeManager().setHome(player, args[0], player.getLocation());
-                    player.sendMessage(Messages.PREFIX.get() + "§7Du hast dein Home gesetzt");
-                    player.sendMessage(Messages.PREFIX.get() + "§7Teleportiere dich mit §e/home " + args[0] + "§7!");
-                } else {
-                    player.sendMessage(Messages.PREFIX.get() + "§cDu hast dein Home bereits gesetzt!");
-                    player.sendMessage(Messages.PREFIX.get() + "§cMit §e/sethome " + args[0] + " confirm §ckann es überschrieben werden!");
-                }
+            if (args.length == 0) {
+                setHome(player, "home");
+            } else if (args.length == 1) {
+                setHome(player, args[0]);
             } else if (args.length == 2 && args[1].equalsIgnoreCase("confirm")) {
                     EndoflifeCore.getInstance().getHomeManager().setHome(player, args[0], player.getLocation());
                     player.sendMessage(Messages.PREFIX.get() + "§7Du hast dein Home gesetzt");
@@ -52,5 +39,17 @@ public class SetHomeCommand implements CommandExecutor {
             }
         }
         return false;
+    }
+
+    private void setHome(Player player, String name) {
+        Home home = EndoflifeCore.getInstance().getHomeManager().getHome(player, name);
+        if (home == null) {
+            EndoflifeCore.getInstance().getHomeManager().setHome(player, name, player.getLocation());
+            player.sendMessage(Messages.PREFIX.get() + "§7Du hast dein Home gesetzt");
+            player.sendMessage(Messages.PREFIX.get() + "§7Teleportiere dich mit §e/home " + name + "§7!");
+        } else {
+            player.sendMessage(Messages.PREFIX.get() + "§cDu hast dein Home bereits gesetzt!");
+            player.sendMessage(Messages.PREFIX.get() + "§cMit §e/sethome " + name + " confirm §ckann es überschrieben werden!");
+        }
     }
 }

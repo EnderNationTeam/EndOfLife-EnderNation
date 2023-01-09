@@ -20,18 +20,24 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player player) {
-            if(args.length == 1) {
-                Home home = EndoflifeCore.getInstance().getHomeManager().getHome(player, args[0]);
-                if (home != null) {
-                    player.sendMessage(Messages.PREFIX.get() + "§7Du wirst gleich Teleportiert...");
-                    teleportToSpawn(player, home);
-                } else
-                    player.sendMessage(Messages.PREFIX.get() + "§cDu hast noch kein Home names §e" + args[0] + "§c!");
+            if(args.length == 0) {
+                home(player, "home");
+            } else if(args.length == 1) {
+                home(player, args[0]);
             } else {
                 player.sendMessage(Messages.PREFIX.get() + "§cBitte benutze §e/home <Name>§c!");
             }
         }
         return false;
+    }
+
+    private void home(Player player, String name) {
+        Home home = EndoflifeCore.getInstance().getHomeManager().getHome(player, name);
+        if (home != null) {
+            player.sendMessage(Messages.PREFIX.get() + "§7Du wirst gleich Teleportiert...");
+            teleportToSpawn(player, home);
+        } else
+            player.sendMessage(Messages.PREFIX.get() + "§cDu hast noch kein Home names §e" + name + "§c!");
     }
 
     private void teleportToSpawn(Player player, Home home) {
