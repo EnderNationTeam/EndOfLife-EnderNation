@@ -40,8 +40,8 @@ public class Delivery extends NPC implements Listener {
         farmerMoney.put(POTATO, 0.20);
         farmerMoney.put(WHEAT, 0.20);
         farmerMoney.put(MELON_SLICE, 0.70);
-        farmerMoney.put(HONEY_BLOCK, 4.70);
-        farmerMoney.put(PUMPKIN, 2.10);
+        farmerMoney.put(HONEY_BLOCK, 2.30);
+        farmerMoney.put(PUMPKIN, 1.10);
         farmerMoney.put(SUGAR_CANE, 0.05);
         farmerMoney.put(BEETROOT, 0.20);
         farmerMoney.put(PUMPKIN_SEEDS, 0.01);
