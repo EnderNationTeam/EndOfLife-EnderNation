@@ -5,9 +5,6 @@ import org.bukkit.Location;
 public class Region {
 
     public boolean isIn(Location playerLocation, Location locationA, Location locationB) {
-        if(locationA == null) return false;
-        if(locationB == null) return false;
-
         Double maxX = (locationA.getX() > locationB.getX() ? locationA.getX() : locationB.getX());
         Double minX = (locationA.getX() < locationB.getX() ? locationA.getX() : locationB.getX());
         Double maxY = (locationA.getY() > locationB.getY() ? locationA.getY() : locationB.getY());

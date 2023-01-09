@@ -13,6 +13,7 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityInteractEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 
 public class ShopAreaListener implements Listener {
 
@@ -21,8 +22,10 @@ public class ShopAreaListener implements Listener {
         Player player = event.getPlayer();
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
+        Location spawnLocation = new ConfigLocationUtil("Spawn").loadLocation();
+
         if (EndoflifeCore.getInstance().getRegionManager().isIn(event.getBlock().getLocation(), shopLocation1, shopLocation2)) {
-            if (event.getBlock().getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+            if (event.getBlock().getLocation().getWorld().getName().equals(spawnLocation.getWorld().getName())) {
                 if (!BuildCommand.getBuild().contains(player)) {
                     event.setCancelled(true);
                 }
@@ -35,8 +38,10 @@ public class ShopAreaListener implements Listener {
         Player player = event.getPlayer();
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
+        Location spawnLocation = new ConfigLocationUtil("Spawn").loadLocation();
+
         if (EndoflifeCore.getInstance().getRegionManager().isIn(event.getBlock().getLocation(), shopLocation1, shopLocation2)) {
-            if (event.getBlock().getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+            if (event.getBlock().getLocation().getWorld().getName().equals(spawnLocation.getWorld().getName())) {
                 if (!BuildCommand.getBuild().contains(player)) {
                     event.setCancelled(true);
                 }
@@ -48,8 +53,10 @@ public class ShopAreaListener implements Listener {
     public void onDamage(FoodLevelChangeEvent event) {
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
+        Location spawnLocation = new ConfigLocationUtil("Spawn").loadLocation();
+
         if (EndoflifeCore.getInstance().getRegionManager().isIn(event.getEntity().getLocation(), shopLocation1, shopLocation2)) {
-            if (event.getEntity().getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+            if (event.getEntity().getLocation().getWorld().getName().equals(spawnLocation.getWorld().getName())) {
                 if (event.getEntity() instanceof Player player) {
                     if (!BuildCommand.getBuild().contains(player)) {
                         event.setCancelled(true);
@@ -63,8 +70,10 @@ public class ShopAreaListener implements Listener {
     public void onDamage(EntityDamageEvent event) {
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
+        Location spawnLocation = new ConfigLocationUtil("Spawn").loadLocation();
+
         if (EndoflifeCore.getInstance().getRegionManager().isIn(event.getEntity().getLocation(), shopLocation1, shopLocation2)) {
-            if (event.getEntity().getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+            if (event.getEntity().getLocation().getWorld().getName().equals(spawnLocation.getWorld().getName())) {
                 if (event.getEntity() instanceof Player player) {
                     if (!BuildCommand.getBuild().contains(player)) {
                         event.setCancelled(true);
@@ -75,17 +84,34 @@ public class ShopAreaListener implements Listener {
     }
 
     @EventHandler
-    public void onInteract(PlayerInteractEvent event) {
+    public void onDamage(PlayerItemDamageEvent event) {
         Player player = event.getPlayer();
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
+        Location spawnLocation = new ConfigLocationUtil("Spawn").loadLocation();
+
         if (EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), shopLocation1, shopLocation2)) {
-            if (player.getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+            if (player.getLocation().getWorld().getName().equals(spawnLocation.getWorld().getName())) {
                 if (!BuildCommand.getBuild().contains(player)) {
                     event.setCancelled(true);
                 }
             }
         }
+    }
 
+    @EventHandler
+    public void onInteract(PlayerInteractEvent event) {
+        Player player = event.getPlayer();
+        Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
+        Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
+        Location spawnLocation = new ConfigLocationUtil("Spawn").loadLocation();
+
+        if (EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), shopLocation1, shopLocation2)) {
+            if (player.getLocation().getWorld().getName().equals(spawnLocation.getWorld().getName())) {
+                if (!BuildCommand.getBuild().contains(player)) {
+                    event.setCancelled(true);
+                }
+            }
+        }
     }
 }

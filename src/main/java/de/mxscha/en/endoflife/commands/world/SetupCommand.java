@@ -99,6 +99,7 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
         }
 
         if (args.length == 2){
+            arguments.add("spawn");
             arguments.add("employer");
             arguments.add("shop");
             arguments.add("accepter");
@@ -108,11 +109,11 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
             arguments.add("region");
         }
 
-        if (args.length == 3){
+        if (args[1].equalsIgnoreCase("region") && args.length == 3){
             arguments.add("shop");
         }
 
-        if (args.length == 4){
+        if (args[1].equalsIgnoreCase("region") && args[2].equalsIgnoreCase("Shop") && args.length == 4){
             arguments.add("1");
             arguments.add("2");
         }

@@ -33,18 +33,13 @@ public class ConfigLocationUtil {
     public Location loadLocation() {
         FileConfiguration config = LocationsConfig.getConfig();
         if (config.contains(root)) {
-            try {
-                World world = Bukkit.getWorld(config.getString(root + ".World"));
-                double x = config.getDouble(root + ".X"),
-                        y = config.getDouble(root + ".Y"),
-                        z = config.getDouble(root + ".Z");
-                float yaw = (float) config.getDouble(root + ".Yaw");
-                float pitch = (float) config.getDouble(root + ".Pitch");
-                return new Location(world, x, y, z, yaw, pitch);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-                return null;
-            }
+            World world = Bukkit.getWorld(config.getString(root + ".World"));
+            double x = config.getDouble(root + ".X"),
+                    y = config.getDouble(root + ".Y"),
+                    z = config.getDouble(root + ".Z");
+            float yaw = (float) config.getDouble(root + ".Yaw");
+            float pitch = (float) config.getDouble(root + ".Pitch");
+            return new Location(world, x, y, z, yaw, pitch);
         } else
             return null;
     }
