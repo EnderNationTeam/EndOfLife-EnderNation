@@ -3,7 +3,6 @@ package de.mxscha.en.endoflife.commands.teleport;
 import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.utils.manager.chat.Messages;
 import de.mxscha.en.endoflife.utils.manager.home.Home;
-import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
