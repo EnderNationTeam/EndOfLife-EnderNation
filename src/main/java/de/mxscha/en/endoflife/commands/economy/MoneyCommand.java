@@ -25,8 +25,8 @@ public class MoneyCommand implements CommandExecutor {
                             case "set" -> {
                                 try {
                                     Player target = Bukkit.getPlayer(args[1]);
-                                    EndoflifeCore.getInstance().getMoneyAPI().setMoney(target, Integer.parseInt(args[2]));
-                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §c" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
+                                    EndoflifeCore.getInstance().getMoneyAPI().setMoney(target, Double.parseDouble(args[2]));
+                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §a" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
                                     new DefaultScoreboard(target).update();
                                     new DefaultScoreboard(player).update();
                                } catch (Exception e) {
@@ -36,8 +36,8 @@ public class MoneyCommand implements CommandExecutor {
                             case "add" -> {
                                 try {
                                     Player target = Bukkit.getPlayer(args[1]);
-                                    EndoflifeCore.getInstance().getMoneyAPI().addMoney(target, Integer.parseInt(args[2]));
-                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §c" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
+                                    EndoflifeCore.getInstance().getMoneyAPI().addMoney(target, Double.parseDouble(args[2]));
+                                    player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §a" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
                                     new DefaultScoreboard(target).update();
                                     new DefaultScoreboard(player).update();
                                 } catch (Exception e) {
@@ -47,9 +47,10 @@ public class MoneyCommand implements CommandExecutor {
                             case "remove" -> {
                                 try {
                                     Player target = Bukkit.getPlayer(args[1]);
-                                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(target, Integer.parseInt(args[2]));
+                                    EndoflifeCore.getInstance().getMoneyAPI().removeMoney(target, Double.parseDouble(args[2]));
                                     player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat nun §c" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
                                     new DefaultScoreboard(target).update();
+                                    new DefaultScoreboard(player).update();
                                     new DefaultScoreboard(player).update();
                                 } catch (Exception e) {
                                     player.sendMessage(Messages.PREFIX.get() + "§cDieser Spieler ist nicht Online!");
@@ -59,7 +60,7 @@ public class MoneyCommand implements CommandExecutor {
                     } else if (args.length == 1) {
                         try {
                             Player target = Bukkit.getPlayer(args[0]);
-                            player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat §c" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
+                            player.sendMessage(Messages.PREFIX.get() + "§e" + target.getName() + " §7hat §a" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€§7!");
                         } catch (Exception e) {
                             player.sendMessage(Messages.PREFIX.get() + "§cDieser Spieler ist nicht Online!");
                         }
