@@ -61,7 +61,7 @@ public final class EndoflifeCore extends JavaPlugin {
 
         Money.setApi(moneyAPI);
 
-        ClearLagManager.start();
+        // ClearLagManager.start();
         JobActionBarInfoManager.send();
     }
 

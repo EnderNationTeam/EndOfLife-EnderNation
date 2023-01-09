@@ -9,6 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
+
 public class AdminPlayerInfoCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -23,7 +25,7 @@ public class AdminPlayerInfoCommand implements CommandExecutor {
                             Player target = Bukkit.getPlayer(args[0]);
                             if (target.isOnline()) {
                                 player.sendMessage(" ");
-                                player.sendMessage("  §8» §eSpieler§8: §a" + target.getName());
+                                player.sendMessage("  §8» §eSpieler§8: §7" + target.getName());
                                 switch (EndoflifeCore.getInstance().getJobAPI().getJob(target)) {
                                     case "Arbeitslos" ->
                                             player.sendMessage("  §8» §aJob§8: §8" + EndoflifeCore.getInstance().getJobAPI().getJob(target));
@@ -38,7 +40,8 @@ public class AdminPlayerInfoCommand implements CommandExecutor {
                                     case "Fischer" ->
                                             player.sendMessage("  §8» §aJob§8: §9" + EndoflifeCore.getInstance().getJobAPI().getJob(target));
                                 }
-                                player.sendMessage("  §8» §cGeld§8: §7" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(target) + "€");
+                                DecimalFormat f = new DecimalFormat("#0.00");
+                                player.sendMessage("  §8» §cGeld§8: §7" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(target)) + "€");
                                 player.sendMessage(" ");
                             } else
                                 player.sendMessage(Messages.PLAYER_NOT_FOUND.get());

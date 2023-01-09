@@ -90,7 +90,7 @@ public class PlayerTablist {
         enderhacker.setPrefix("§3§lE§b§lHacker §8» §7");
         enderhero.setPrefix("§3§lE§5§lHero §8» §7");
         enderking.setPrefix("&3E§6§lKing §8» §7");
-        players.setPrefix("§7§lSpieler §8» §7");
+        players.setPrefix("§d§lBeta §8» §7");
 
         owner.setColor(ChatColor.GRAY);
         manager.setColor(ChatColor.GRAY);
@@ -159,7 +159,7 @@ public class PlayerTablist {
                 enderking.addEntry(target.getName());
                 continue;
             }
-            if (target.hasPermission("rang.default")) {
+            if (target.hasPermission("rang.default") || target.hasPermission("rang.spieler")) {
                 players.addEntry(target.getName());
                 continue;
             }
