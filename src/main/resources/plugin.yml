@@ -25,6 +25,8 @@ commands:
   head:
   givekey:
   home:
+  homes:
   sethome:
+  delhome:
   help:
   job:

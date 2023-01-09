@@ -65,5 +65,12 @@
             <version>1.19.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!-- gson # A Java serialization/deserialization library to convert Java Objects into JSON and back -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.10</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

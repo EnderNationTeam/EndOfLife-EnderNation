@@ -55,7 +55,9 @@ public class Register {
         core.getCommand("help").setExecutor(new PlayerHelpCommand());
         core.getCommand("head").setExecutor(new GiveHeadCommand());
         core.getCommand("givekey").setExecutor(new GiveKeyCommand());
+        core.getCommand("delhome").setExecutor(new DelHomeCommand());
         core.getCommand("sethome").setExecutor(new SetHomeCommand());
+        core.getCommand("homes").setExecutor(new HomesCommand());
         core.getCommand("home").setExecutor(new HomeCommand());
         core.getCommand("job").setExecutor(new JobQuitCommand());
         InventoryOpener.initInventorys();
