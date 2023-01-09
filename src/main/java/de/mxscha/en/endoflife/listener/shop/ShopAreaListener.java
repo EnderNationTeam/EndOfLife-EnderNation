@@ -20,8 +20,10 @@ public class ShopAreaListener implements Listener {
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
         if (EndoflifeCore.getInstance().getRegionManager().isIn(event.getBlock().getLocation(), shopLocation1, shopLocation2)) {
-            if (!BuildCommand.getBuild().contains(player)) {
-                event.setCancelled(true);
+            if (event.getBlock().getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+                if (!BuildCommand.getBuild().contains(player)) {
+                    event.setCancelled(true);
+                }
             }
         }
     }
@@ -32,8 +34,10 @@ public class ShopAreaListener implements Listener {
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
         if (EndoflifeCore.getInstance().getRegionManager().isIn(event.getBlock().getLocation(), shopLocation1, shopLocation2)) {
-            if (!BuildCommand.getBuild().contains(player)) {
-                event.setCancelled(true);
+            if (event.getBlock().getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+                if (!BuildCommand.getBuild().contains(player)) {
+                    event.setCancelled(true);
+                }
             }
         }
     }
@@ -43,9 +47,11 @@ public class ShopAreaListener implements Listener {
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
         if (EndoflifeCore.getInstance().getRegionManager().isIn(event.getEntity().getLocation(), shopLocation1, shopLocation2)) {
-            if (event.getEntity() instanceof Player player) {
-                if (!BuildCommand.getBuild().contains(player)) {
-                    event.setCancelled(true);
+            if (event.getEntity().getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+                if (event.getEntity() instanceof Player player) {
+                    if (!BuildCommand.getBuild().contains(player)) {
+                        event.setCancelled(true);
+                    }
                 }
             }
         }
@@ -56,9 +62,11 @@ public class ShopAreaListener implements Listener {
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
         if (EndoflifeCore.getInstance().getRegionManager().isIn(event.getEntity().getLocation(), shopLocation1, shopLocation2)) {
-            if (event.getEntity() instanceof Player player) {
-                if (!BuildCommand.getBuild().contains(player)) {
-                    event.setCancelled(true);
+            if (event.getEntity().getLocation().getWorld().getName().equals(new ConfigLocationUtil("Spawn").loadLocation().getWorld().getName())) {
+                if (event.getEntity() instanceof Player player) {
+                    if (!BuildCommand.getBuild().contains(player)) {
+                        event.setCancelled(true);
+                    }
                 }
             }
         }

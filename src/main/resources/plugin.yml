@@ -18,7 +18,6 @@ commands:
   build:
   vanish:
     aliases: v
-  pay:
   tpa:
   tpaccept:
   trade:

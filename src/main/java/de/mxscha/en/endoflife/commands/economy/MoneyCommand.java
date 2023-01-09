@@ -67,7 +67,8 @@ public class MoneyCommand implements CommandExecutor {
                 }
             } else {
                 if (args.length == 0) {
-                    player.sendMessage(Messages.PREFIX.get() + "§7Du hast§8: §c" + EndoflifeCore.getInstance().getMoneyAPI().getMoney(player)+"€");
+                    DecimalFormat f = new DecimalFormat("#0.00");
+                    player.sendMessage(Messages.PREFIX.get() + "§7Du hast§8: §a" + f.format(EndoflifeCore.getInstance().getMoneyAPI().getMoney(player))+"€");
                 } else
                     player.sendMessage(Messages.PREFIX.get() + "§cBenutze§8: §e/money§c!");
             }

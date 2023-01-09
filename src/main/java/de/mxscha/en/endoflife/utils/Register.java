@@ -47,7 +47,7 @@ public class Register {
         core.getCommand("jobs").setExecutor(new JobsCommand());
         core.getCommand("build").setExecutor(new BuildCommand());
         core.getCommand("vanish").setExecutor(new VanishCommand());
-        core.getCommand("pay").setExecutor(new PayCommand());
+      //  core.getCommand("pay").setExecutor(new PayCommand());
         core.getCommand("tpa").setExecutor(new TpaCommand());
         core.getCommand("tpaccept").setExecutor(new TpacceptCommand());
         core.getCommand("trade").setExecutor(new TradeCommand());
