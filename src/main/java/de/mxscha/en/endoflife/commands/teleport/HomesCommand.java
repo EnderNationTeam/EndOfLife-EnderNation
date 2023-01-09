@@ -45,6 +45,7 @@ public class HomesCommand implements CommandExecutor {
                                 .hoverEvent(HoverEvent.showText(
                                         Component.text("Klick zum Teleport").color(TextColor.color(0xFF0000))
                                 ))
+                                .color(TextColor.color(0x52E280))
                 );
 
                 // check if last
