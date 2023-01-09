@@ -71,7 +71,7 @@ public class HomeManager {
 
     public void createTables() {
         this.mySQL = EndoflifeCore.getInstance().getMySQL();
-        mySQL.update("CREATE TABLE IF NOT EXISTS homes (uuid VARCHAR(36) PRIMARY KEY, homes VARCHAR(500))");
+        mySQL.update("CREATE TABLE IF NOT EXISTS homes (uuid VARCHAR(36) PRIMARY KEY, homes VARCHAR(6555))");
      }
 }
 

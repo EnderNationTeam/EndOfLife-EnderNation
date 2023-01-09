@@ -13,6 +13,26 @@ public class SetHomeCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player player) {
+            int maxHomes = 3;
+
+            for(int i = 500; i > 0; i--) {
+                if(player.hasPermission("endoflife.sethome.max." + i)) {
+                    maxHomes = i;
+                    break;
+                }
+            }
+
+            /*
+            if(player.hasPermission("endoflife.sethome.max.5")) maxHomes = 5;
+            if(player.hasPermission("endoflife.sethome.max.10")) maxHomes = 10;
+            if(player.hasPermission("endoflife.sethome.max.15")) maxHomes = 15;
+             */
+
+            if(maxHomes == EndoflifeCore.getInstance().getHomeManager().getHomes(player).getList().size()) {
+                player.sendMessage(Messages.PREFIX.get() + "§cDu hast bereits dein maximales Home Limit erreicht!");
+                return false;
+            }
+
             if (args.length == 1) {
                 Home home = EndoflifeCore.getInstance().getHomeManager().getHome(player, args[0]);
                 if (home == null) {
