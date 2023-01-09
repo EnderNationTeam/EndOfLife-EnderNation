@@ -3,6 +3,7 @@ package de.mxscha.en.endoflife.listener.shop;
 import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.commands.world.BuildCommand;
 import de.mxscha.en.endoflife.utils.manager.location.ConfigLocationUtil;
+import io.papermc.paper.event.player.PlayerItemFrameChangeEvent;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -84,7 +85,7 @@ public class ShopAreaListener implements Listener {
     }
 
     @EventHandler
-    public void onDamage(PlayerItemDamageEvent event) {
+    public void onItemFrame(PlayerItemFrameChangeEvent event) {
         Player player = event.getPlayer();
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
