@@ -23,7 +23,7 @@ public class DeathListener implements Listener {
             builder.replacement(Component.text(player.getName()).color(TextColor.fromHexString("#00FF00")));
 
             // Hier ist bei dem Component der Player Abgeändert
-            component.replaceText(builder.build());
+            component = component.replaceText(builder.build());
 
             if (target != null) {
                 // Hier wird eine Config für den text der Abgeändert werden soll für den Target
@@ -32,7 +32,7 @@ public class DeathListener implements Listener {
                 builder.replacement(Component.text(target.getName()).color(TextColor.fromHexString("#FF0000")));
 
                 // Hier ist bei dem Component den Target Player Abgeändert
-                component.replaceText(builder.build());
+                component = component.replaceText(builder.build());
 
                 // Sende die message
                 player.sendMessage(component);
