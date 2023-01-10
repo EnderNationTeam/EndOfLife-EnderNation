@@ -47,6 +47,7 @@ public class Register {
         pluginManager.registerEvents(new ArenaSpawnAreaWeatherChangeListener(), core);
         core.getCommand("setup").setExecutor(new SetupCommand());
         core.getCommand("spawn").setExecutor(new SpawnCommand());
+        core.getCommand("arena").setExecutor(new ArenaCommand());
         core.getCommand("enderchest").setExecutor(new EnderChestCommand());
         core.getCommand("backpack").setExecutor(new BackpackCommand());
         core.getCommand("gamemode").setExecutor(new GameModeCommand());

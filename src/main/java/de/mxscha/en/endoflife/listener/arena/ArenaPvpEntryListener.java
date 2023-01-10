@@ -29,7 +29,7 @@ public class ArenaPvpEntryListener implements Listener {
         }
 
         Location arenaPvp1 = new ConfigLocationUtil("ArenaPvp1").loadLocation();
-        Location arenaPvp2 = new ConfigLocationUtil("ArenaPvp2 ").loadLocation();
+        Location arenaPvp2 = new ConfigLocationUtil("ArenaPvp2").loadLocation();
 
         if (!EndoflifeCore.getInstance().getRegionManager().isIn(event.getEntity().getLocation(), arenaPvp1, arenaPvp2)) {
             if (event.getEntity() instanceof Player player) {

@@ -6,6 +6,7 @@ api-version: 1.19
 commands:
   setup:
   spawn:
+  arena:
   enderchest:
     aliases: ec
   backpack:
