@@ -14,6 +14,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 public class ArenaAreaListener implements Listener {
 
@@ -60,12 +61,26 @@ public class ArenaAreaListener implements Listener {
         Location arenaPvp1 = new ConfigLocationUtil("ArenaPvp1").loadLocation();
         Location arenaPvp2 = new ConfigLocationUtil("ArenaPvp2").loadLocation();
 
-        if(event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+
+        Material material = event.getItem().getType();
+        if((event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) && !(
+                material.equals(Material.BOW)
+                    || material.equals(Material.BOWL)
+                    || material.equals(Material.CROSSBOW)
+                    || material.equals(Material.BOW)
+                    || material.equals(Material.EGG)
+                    || material.equals(Material.SNOWBALL)
+                    || material.equals(Material.ENDER_PEARL)
+                    || material.equals(Material.FISHING_ROD)
+                )
+        ) {
             return;
         }
 
         if (EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), arenaPvp1, arenaPvp2)) {
-            return;
+            if(!(material.equals(Material.WATER_BUCKET) || material.equals(Material.LAVA_BUCKET) || material.equals(Material.BUCKET))) {
+                return;
+            }
         }
 
         if (event.getPlayer().getLocation().getWorld().getName().equals(arenaSpawn.getWorld().getName())) {
