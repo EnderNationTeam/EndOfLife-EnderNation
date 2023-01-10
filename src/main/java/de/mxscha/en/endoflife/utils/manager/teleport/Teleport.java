@@ -8,7 +8,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 public class Teleport {
+
+    static Map<Player, BukkitTask> inTeleport = new HashMap();
 
     final Player player;
     final Location location;
@@ -18,6 +24,16 @@ public class Teleport {
     Sound sound = Sound.ENTITY_PLAYER_LEVELUP;
     int teleportTime = 3;
     BukkitTask bukkitTask;
+
+    public static Set<Player> getInTeleport() {
+        return inTeleport.keySet();
+    }
+
+    public static void cancelTeleport(Player player) {
+        player.sendMessage(Messages.PREFIX.get() + "§cTeleport abgebrochen!");
+        inTeleport.get(player).cancel();
+        inTeleport.remove(player);
+    }
 
     public Teleport(Player player, Location location) {
         this.player = player;
@@ -61,7 +77,13 @@ public class Teleport {
     }
 
     public void teleport() {
+        if(inTeleport.containsKey(player)) {
+            player.sendMessage(Messages.PREFIX.get() + "§cDu kannst dich nicht teleportieren, da du bereits in einem Teleport bist!");
+            return;
+        }
+
         player.sendMessage(beforeTeleportMessage);
+        player.sendMessage(Messages.PREFIX.get() + "§cBewege dich nicht!");
         bukkitTask = new BukkitRunnable() {
             @Override
             public void run() {
@@ -69,12 +91,17 @@ public class Teleport {
                     player.teleport(location);
                 } catch (IllegalArgumentException e) {
                     player.sendMessage(Messages.PREFIX.get() + "§cDu kannst dich nicht in diese Welt teleportieren!");
+                    inTeleport.remove(player);
+                    return;
                 }
 
+                inTeleport.remove(player);
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                 player.sendMessage(afterTeleportMessage);
             }
         }.runTaskLater(EndoflifeCore.getInstance(), 20 * teleportTime);
+
+        inTeleport.put(player, bukkitTask);
     }
 
 

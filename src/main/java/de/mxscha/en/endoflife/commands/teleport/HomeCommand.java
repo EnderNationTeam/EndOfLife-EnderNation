@@ -37,7 +37,7 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
         Home home = EndoflifeCore.getInstance().getHomeManager().getHome(player, name);
         if (home != null) {
             Teleport teleport = new Teleport(player, home.getLocation()).setSound(Sound.ENTITY_PLAYER_LEVELUP).setTeleportTime(3);
-            teleport.setBeforeMessage(Messages.PREFIX.get() + "§7Du wirst in §e" + teleport.getTeleportTime() + " Sekunden §7teleportiert! §cBitte bewege dich nicht!");
+            teleport.setBeforeMessage(Messages.PREFIX.get() + "§7Du wirst in §e" + teleport.getTeleportTime() + " Sekunden §7teleportiert!");
             teleport.setAfterMessage(Messages.PREFIX.get() + "§7Du wurdest zu deinem Home §e" + name + " §7teleportiert!");
             teleport.teleport();
         } else

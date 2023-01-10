@@ -22,7 +22,7 @@ public class ArenaCommand implements CommandExecutor, Listener {
                 try {
                     Location arena = new ConfigLocationUtil("ArenaSpawn").loadLocation();
                     Teleport teleport = new Teleport(player, arena).setSound(Sound.ENTITY_PLAYER_LEVELUP).setTeleportTime(3);
-                    teleport.setBeforeMessage(Messages.PREFIX.get() + "§7Du wirst in §e" + teleport.getTeleportTime() + " Sekunden §7teleportiert! §cBitte bewege dich nicht!");
+                    teleport.setBeforeMessage(Messages.PREFIX.get() + "§7Du wirst in §e" + teleport.getTeleportTime() + " Sekunden §7teleportiert!");
                     teleport.setAfterMessage(Messages.PREFIX.get() + "§7Du bist nun in der Arena!");
                     teleport.teleport();
                 } catch (Exception e) {

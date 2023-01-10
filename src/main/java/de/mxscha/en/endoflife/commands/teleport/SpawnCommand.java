@@ -22,7 +22,7 @@ public class SpawnCommand implements CommandExecutor, Listener {
                 try {
                     Location spawn = new ConfigLocationUtil("Spawn").loadLocation();
                     Teleport teleport = new Teleport(player, spawn).setSound(Sound.ENTITY_PLAYER_LEVELUP).setTeleportTime(3);
-                    teleport.setBeforeMessage(Messages.PREFIX.get() + "§7Du wirst in §e" + teleport.getTeleportTime() + " Sekunden §7teleportiert! §cBitte bewege dich nicht!");
+                    teleport.setBeforeMessage(Messages.PREFIX.get() + "§7Du wirst in §e" + teleport.getTeleportTime() + " Sekunden §7teleportiert!");
                     teleport.setAfterMessage(Messages.PREFIX.get() + "§7Du bist nun in der Spawn!");
                     teleport.teleport();
                 } catch (Exception e) {
