@@ -13,6 +13,9 @@ public class ArenaSpawnAreaWeatherChangeListener implements Listener {
         Location spawn = new ConfigLocationUtil("ArenaSpawn").loadLocation();
         if (spawn == null) return;
         if (event.getWorld() == spawn.getWorld()) {
+            event.getWorld().setStorm(false);
+            event.getWorld().setThundering(false);
+            event.getWorld().setWeatherDuration(0);
             event.setCancelled(true);
         }
     }

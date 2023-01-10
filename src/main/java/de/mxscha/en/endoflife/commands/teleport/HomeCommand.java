@@ -3,6 +3,7 @@ package de.mxscha.en.endoflife.commands.teleport;
 import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.utils.manager.chat.Messages;
 import de.mxscha.en.endoflife.utils.manager.home.Home;
+import de.mxscha.en.endoflife.utils.manager.teleport.Teleport;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,8 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeCommand implements CommandExecutor, TabCompleter {
-
-    List<Player> players = new ArrayList<>();
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -37,34 +36,12 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
     private void home(Player player, String name) {
         Home home = EndoflifeCore.getInstance().getHomeManager().getHome(player, name);
         if (home != null) {
-            player.sendMessage(Messages.PREFIX.get() + "§7Du wirst gleich Teleportiert...");
-            teleportToSpawn(player, home);
+            Teleport teleport = new Teleport(player, home.getLocation()).setSound(Sound.ENTITY_PLAYER_LEVELUP).setTeleportTime(3);
+            teleport.setBeforeMessage(Messages.PREFIX.get() + "§7Du wirst in §e" + teleport.getTeleportTime() + " Sekunden §7teleportiert! §cBitte bewege dich nicht!");
+            teleport.setAfterMessage(Messages.PREFIX.get() + "§7Du wurdest zu deinem Home §e" + name + " §7teleportiert!");
+            teleport.teleport();
         } else
             player.sendMessage(Messages.PREFIX.get() + "§cDu hast noch kein Home names §e" + name + "§c!");
-    }
-
-    private void teleportToSpawn(Player player, Home home) {
-        if(players.contains(player)) {
-            player.sendMessage(Messages.PREFIX.get() + "§cDu kannst dich noch nicht teleportieren!");
-            return;
-        }
-
-        players.add(player);
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                try {
-                    player.teleport(home.getLocation());
-                } catch (IllegalArgumentException e) {
-                    player.sendMessage(Messages.PREFIX.get() + "§cDu kannst dich nicht in dieser Welt teleportieren!");
-                    players.remove(player);
-                    return;
-                }
-                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
-                player.sendMessage(Messages.PREFIX.get() + "§7Du bist nun bei deinem Zuhause!");
-                players.remove(player);
-            }
-        }.runTaskLater(EndoflifeCore.getInstance(), 20*3);
     }
 
     @Override

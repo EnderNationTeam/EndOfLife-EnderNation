@@ -3,6 +3,7 @@ package de.mxscha.en.endoflife.commands.teleport;
 import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.utils.manager.chat.Messages;
 import de.mxscha.en.endoflife.utils.manager.location.ConfigLocationUtil;
+import de.mxscha.en.endoflife.utils.manager.teleport.Teleport;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -19,8 +20,11 @@ public class SpawnCommand implements CommandExecutor, Listener {
         if (sender instanceof Player player) {
             if (args.length == 0) {
                 try {
-                    player.sendMessage(Messages.PREFIX.get() + "§7Du wirst gleich Teleportiert...");
-                    teleportToSpawn(player);
+                    Location spawn = new ConfigLocationUtil("Spawn").loadLocation();
+                    Teleport teleport = new Teleport(player, spawn).setSound(Sound.ENTITY_PLAYER_LEVELUP).setTeleportTime(3);
+                    teleport.setBeforeMessage(Messages.PREFIX.get() + "§7Du wirst in §e" + teleport.getTeleportTime() + " Sekunden §7teleportiert! §cBitte bewege dich nicht!");
+                    teleport.setAfterMessage(Messages.PREFIX.get() + "§7Du bist nun in der Spawn!");
+                    teleport.teleport();
                 } catch (Exception e) {
                     player.sendMessage(Messages.PREFIX.get() + "§cDer Spawn wurde nicht gesetzt!");
                 }
@@ -28,17 +32,5 @@ public class SpawnCommand implements CommandExecutor, Listener {
                 player.sendMessage(Messages.PREFIX.get() + "§cBenutze§8: §e/spawn§c!");
         }
         return false;
-    }
-
-    private void teleportToSpawn(Player player) {
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                    Location spawn = new ConfigLocationUtil("Spawn").loadLocation();
-                    player.teleport(spawn);
-                    player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
-                    player.sendMessage(Messages.PREFIX.get() + "§7Du bist nun am Spawn!");
-            }
-        }.runTaskLater(EndoflifeCore.getInstance(), 20*3);
     }
 }

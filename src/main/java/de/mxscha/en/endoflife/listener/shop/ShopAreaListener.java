@@ -53,23 +53,6 @@ public class ShopAreaListener implements Listener {
     }
 
     @EventHandler
-    public void onDamage(FoodLevelChangeEvent event) {
-        Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
-        Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();
-        Location spawnLocation = new ConfigLocationUtil("Spawn").loadLocation();
-
-        if (EndoflifeCore.getInstance().getRegionManager().isIn(event.getEntity().getLocation(), shopLocation1, shopLocation2)) {
-            if (event.getEntity().getLocation().getWorld().getName().equals(spawnLocation.getWorld().getName())) {
-                if (event.getEntity() instanceof Player player) {
-                    if (!BuildCommand.getBuild().contains(player)) {
-                        event.setCancelled(true);
-                    }
-                }
-            }
-        }
-    }
-
-    @EventHandler
     public void onDamage(EntityDamageEvent event) {
         Location shopLocation1 = new ConfigLocationUtil("ShopRegion1").loadLocation();
         Location shopLocation2 = new ConfigLocationUtil("ShopRegion2").loadLocation();

@@ -45,6 +45,7 @@ public class Register {
         pluginManager.registerEvents(new VanishDamageListener(), core);
         pluginManager.registerEvents(new SpawnAreaWeatherChangeListener(), core);
         pluginManager.registerEvents(new ArenaSpawnAreaWeatherChangeListener(), core);
+        pluginManager.registerEvents(new TeleportBewegungSensorListener(), core);
         core.getCommand("setup").setExecutor(new SetupCommand());
         core.getCommand("spawn").setExecutor(new SpawnCommand());
         core.getCommand("arena").setExecutor(new ArenaCommand());

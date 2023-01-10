@@ -21,26 +21,6 @@ public class ArenaPvpEntryListener implements Listener {
     List<Player> runnable = new ArrayList<>();
 
     @EventHandler
-    public void onDamage(FoodLevelChangeEvent event) {
-        Location arenaSpawn = new ConfigLocationUtil("ArenaSpawn").loadLocation();
-
-        if (!event.getEntity().getLocation().getWorld().getName().equals(arenaSpawn.getWorld().getName())) {
-            return;
-        }
-
-        Location arenaPvp1 = new ConfigLocationUtil("ArenaPvp1").loadLocation();
-        Location arenaPvp2 = new ConfigLocationUtil("ArenaPvp2").loadLocation();
-
-        if (!EndoflifeCore.getInstance().getRegionManager().isIn(event.getEntity().getLocation(), arenaPvp1, arenaPvp2)) {
-            if (event.getEntity() instanceof Player player) {
-                if (!BuildCommand.getBuild().contains(player)) {
-                    event.setCancelled(true);
-                }
-            }
-        }
-    }
-
-    @EventHandler
     public void onDamage(EntityDamageEvent event) {
         Location arenaSpawn = new ConfigLocationUtil("ArenaSpawn").loadLocation();
 

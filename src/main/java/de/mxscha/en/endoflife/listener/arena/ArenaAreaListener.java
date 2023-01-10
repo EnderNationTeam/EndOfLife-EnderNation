@@ -1,5 +1,6 @@
 package de.mxscha.en.endoflife.listener.arena;
 
+import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.commands.world.BuildCommand;
 import de.mxscha.en.endoflife.utils.manager.location.ConfigLocationUtil;
 import io.papermc.paper.event.player.PlayerItemFrameChangeEvent;
@@ -9,6 +10,7 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -55,10 +57,20 @@ public class ArenaAreaListener implements Listener {
     public void onInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Location arenaSpawn = new ConfigLocationUtil("ArenaSpawn").loadLocation();
+        Location arenaPvp1 = new ConfigLocationUtil("ArenaPvp1").loadLocation();
+        Location arenaPvp2 = new ConfigLocationUtil("ArenaPvp2").loadLocation();
+
+        if(event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_AIR)) {
+            return;
+        }
+
+        if (EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), arenaPvp1, arenaPvp2)) {
+            return;
+        }
 
         if (event.getPlayer().getLocation().getWorld().getName().equals(arenaSpawn.getWorld().getName())) {
             Block block = event.getClickedBlock();
-            if(block != null && (block.getType().equals(Material.ENDER_CHEST) || block.getType().equals(Material.ENCHANTING_TABLE))) {
+            if(block != null && (block.getType().equals(Material.ENDER_CHEST) || block.getType().equals(Material.ENCHANTING_TABLE) || block.getType().equals(Material.ANVIL))) {
                 return;
             }
 
