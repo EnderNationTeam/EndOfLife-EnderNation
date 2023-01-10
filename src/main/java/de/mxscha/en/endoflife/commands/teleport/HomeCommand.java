@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeCommand implements CommandExecutor, TabCompleter {
+
+    List<Player> players = new ArrayList<>();
+
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (sender instanceof Player player) {
@@ -41,12 +44,25 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
     }
 
     private void teleportToSpawn(Player player, Home home) {
+        if(players.contains(player)) {
+            player.sendMessage(Messages.PREFIX.get() + "§cDu kannst dich noch nicht teleportieren!");
+            return;
+        }
+
+        players.add(player);
         new BukkitRunnable() {
             @Override
             public void run() {
-                player.teleport(home.getLocation());
+                try {
+                    player.teleport(home.getLocation());
+                } catch (IllegalArgumentException e) {
+                    player.sendMessage(Messages.PREFIX.get() + "§cDu kannst dich nicht in dieser Welt teleportieren!");
+                    players.remove(player);
+                    return;
+                }
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                 player.sendMessage(Messages.PREFIX.get() + "§7Du bist nun bei deinem Zuhause!");
+                players.remove(player);
             }
         }.runTaskLater(EndoflifeCore.getInstance(), 20*3);
     }
