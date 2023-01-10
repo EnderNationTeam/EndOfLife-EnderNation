@@ -27,6 +27,7 @@ public class Register {
         pluginManager.registerEvents(new ShopAreaListener(), core);
         pluginManager.registerEvents(new CrateListener(), core);
         pluginManager.registerEvents(new ChatListener(), core);
+        pluginManager.registerEvents(new DeathListener(), core);
         pluginManager.registerEvents(new JoinListener(), core);
         pluginManager.registerEvents(new QuitListener(), core);
         pluginManager.registerEvents(new ShopListener(), core);
