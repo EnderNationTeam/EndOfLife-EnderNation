@@ -14,7 +14,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.ItemStack;
 
 public class ArenaAreaListener implements Listener {
 
@@ -85,7 +84,12 @@ public class ArenaAreaListener implements Listener {
 
         if (event.getPlayer().getLocation().getWorld().getName().equals(arenaSpawn.getWorld().getName())) {
             Block block = event.getClickedBlock();
-            if(block != null && (block.getType().equals(Material.ENDER_CHEST) || block.getType().equals(Material.ENCHANTING_TABLE) || block.getType().equals(Material.ANVIL))) {
+            if(block != null && (
+                    block.getType().equals(Material.ENDER_CHEST)
+                            || block.getType().equals(Material.ENCHANTING_TABLE)
+                            || block.getType().equals(Material.ANVIL)
+                            || block.getType().equals(Material.GRINDSTONE)
+            )) {
                 return;
             }
 
