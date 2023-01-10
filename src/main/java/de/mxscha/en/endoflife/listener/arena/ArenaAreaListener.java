@@ -78,7 +78,7 @@ public class ArenaAreaListener implements Listener {
         }
 
         if (EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), arenaPvp1, arenaPvp2)) {
-            if(!(material.equals(Material.WATER_BUCKET) || material.equals(Material.LAVA_BUCKET) || material.equals(Material.BUCKET))) {
+            if(!material.equals(Material.EGG) || material.equals(Material.WATER_BUCKET) || material.equals(Material.LAVA_BUCKET) || material.equals(Material.BUCKET)) {
                 return;
             }
         }
