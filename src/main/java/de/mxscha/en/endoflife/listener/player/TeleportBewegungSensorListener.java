@@ -12,10 +12,12 @@ public class TeleportBewegungSensorListener implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-        Set<Player> playerSet = Teleport.getInTeleport();
-        Player player = event.getPlayer();
-        if(playerSet.contains(player)) {
-            Teleport.cancelTeleport(player);
+        if (event.getFrom().getZ() != event.getTo().getZ() && event.getFrom().getX() != event.getTo().getX()) {
+            Set<Player> playerSet = Teleport.getInTeleport();
+            Player player = event.getPlayer();
+            if(playerSet.contains(player)) {
+                Teleport.cancelTeleport(player);
+            }
         }
 
     }
