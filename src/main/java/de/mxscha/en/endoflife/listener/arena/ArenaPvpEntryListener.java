@@ -87,7 +87,6 @@ public class ArenaPvpEntryListener implements Listener {
                             new BukkitRunnable() {
                                 @Override
                                 public void run() {
-                                    player.sendMessage("§3Jetzt hast du die Möglichkeit erhalten: Du hast die Arena betreten");
                                     list.remove(player);
                                     runnable.remove(player);
                                 }

@@ -34,7 +34,7 @@ public class ArenaCommand implements CommandExecutor, Listener {
         new BukkitRunnable() {
             @Override
             public void run() {
-                    Location spawn = new ConfigLocationUtil("Spawn").loadLocation();
+                    Location spawn = new ConfigLocationUtil("ArenaSpawn").loadLocation();
                     player.teleport(spawn);
                     player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                     player.sendMessage(Messages.PREFIX.get() + "§7Du bist nun in der Arena!");
