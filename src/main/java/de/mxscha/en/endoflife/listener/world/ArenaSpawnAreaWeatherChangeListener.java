@@ -16,6 +16,7 @@ public class ArenaSpawnAreaWeatherChangeListener implements Listener {
             event.getWorld().setStorm(false);
             event.getWorld().setThundering(false);
             event.getWorld().setWeatherDuration(0);
+            event.getWorld().setTime(6000);
             event.setCancelled(true);
         }
     }

@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.weather.WeatherChangeEvent;
+import org.bukkit.event.weather.WeatherEvent;
 
 public class SpawnAreaWeatherChangeListener implements Listener {
 
@@ -16,6 +17,7 @@ public class SpawnAreaWeatherChangeListener implements Listener {
             event.getWorld().setStorm(false);
             event.getWorld().setThundering(false);
             event.getWorld().setWeatherDuration(0);
+            event.getWorld().setTime(6000);
             event.setCancelled(true);
         }
     }
