@@ -24,10 +24,16 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
             if (player.hasPermission("endoflife.setup")) {
                 switch (args.length) {
                     case 0:
-                        player.sendMessage("test");
+                        player.sendMessage(" §8● §e/setup set spawn");
+                        player.sendMessage(" §8● §e/setup set employer");
+                        player.sendMessage(" §8● §e/setup set shop");
+                        player.sendMessage(" §8● §e/setup set accepter");
+                        player.sendMessage(" §8● §e/setup set smith");
+                        player.sendMessage(" §8● §e/setup set rtp");
+                        player.sendMessage(" §8● §e/setup set region shop 1/2");
                         break;
                     case 1:
-                        player.sendMessage("test2");
+                        player.sendMessage(Messages.PREFIX + "§cBitte benutze §e/setup §cfür Hilfe");
                         break;
                     case 2:
                         if (args[0].equalsIgnoreCase("set")) {
@@ -109,11 +115,11 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
             arguments.add("region");
         }
 
-        if (args[1].equalsIgnoreCase("region") && args.length == 3){
+        if (args.length == 3 && args[1].equalsIgnoreCase("region")){
             arguments.add("shop");
         }
 
-        if (args[1].equalsIgnoreCase("region") && args[2].equalsIgnoreCase("Shop") && args.length == 4){
+        if (args.length == 4 && args[1].equalsIgnoreCase("region") && args[2].equalsIgnoreCase("Shop")){
             arguments.add("1");
             arguments.add("2");
         }
