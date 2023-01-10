@@ -30,7 +30,11 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
                         player.sendMessage(" §8● §e/setup set accepter");
                         player.sendMessage(" §8● §e/setup set smith");
                         player.sendMessage(" §8● §e/setup set rtp");
+                        player.sendMessage(" §8● §e/setup set arenaSpawn");
                         player.sendMessage(" §8● §e/setup set region shop 1/2");
+                        player.sendMessage(" §8● §e/setup set region arena void");
+                        player.sendMessage(" §8● §e/setup set region arena pvp1");
+                        player.sendMessage(" §8● §e/setup set region arena pvp2");
                         break;
                     case 1:
                         player.sendMessage(Messages.PREFIX + "§cBitte benutze §e/setup §cfür Hilfe");
@@ -39,6 +43,11 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
                         if (args[0].equalsIgnoreCase("set")) {
                             if (args[1].equalsIgnoreCase("spawn")) {
                                 new ConfigLocationUtil(player.getLocation(),"Spawn").saveLocation();
+                                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                                player.sendMessage(Messages.PREFIX.get() + "§7Du hast den Spawn gesetzt!");
+                            }
+                            if (args[1].equalsIgnoreCase("arenaSpawn")) {
+                                new ConfigLocationUtil(player.getLocation(),"ArenaSpawn").saveLocation();
                                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                                 player.sendMessage(Messages.PREFIX.get() + "§7Du hast den Spawn gesetzt!");
                             }
@@ -73,8 +82,8 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
 
                     case 4:
                         if (args[0].equalsIgnoreCase("set")) {
-                            if (args[1].equalsIgnoreCase("Region")) {
-                                if (args[2].equalsIgnoreCase("Shop")) {
+                            if (args[1].equalsIgnoreCase("region")) {
+                                if (args[2].equalsIgnoreCase("shop")) {
                                     if (args[3].equalsIgnoreCase("1")) {
                                         new ConfigLocationUtil(player.getLocation(),"ShopRegion1").saveLocation();
                                         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
@@ -83,6 +92,24 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
                                         new ConfigLocationUtil(player.getLocation(),"ShopRegion2").saveLocation();
                                         player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
                                         player.sendMessage(Messages.PREFIX.get() + "§7Du hast die §a2 Location §7für die §aShop Area §7gesetzt!");
+                                    }
+                                }
+
+                                if (args[2].equalsIgnoreCase("arena")) {
+                                    if (args[3].equalsIgnoreCase("void")) {
+                                        new ConfigLocationUtil(player.getLocation(),"ArenaVoid").saveLocation();
+                                        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                                        player.sendMessage(Messages.PREFIX.get() + "§7Du hast die §aVoid Location §7für die §aArena Area §7gesetzt!");
+                                    }
+                                    if (args[3].equalsIgnoreCase("pvp1")) {
+                                        new ConfigLocationUtil(player.getLocation(),"ArenaPvp1").saveLocation();
+                                        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                                        player.sendMessage(Messages.PREFIX.get() + "§7Du hast die §aPVP1 Location §7für die §aArena Area §7gesetzt!");
+                                    }
+                                    if (args[3].equalsIgnoreCase("pvp2")) {
+                                        new ConfigLocationUtil(player.getLocation(),"ArenaPvp2").saveLocation();
+                                        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
+                                        player.sendMessage(Messages.PREFIX.get() + "§7Du hast die §aPVP2 Location §7für die §aArena Area §7gesetzt!");
                                     }
                                 }
                             }
@@ -106,6 +133,7 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 2){
             arguments.add("spawn");
+            arguments.add("arenaSpawn");
             arguments.add("employer");
             arguments.add("shop");
             arguments.add("accepter");
@@ -117,11 +145,18 @@ public class SetupCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 3 && args[1].equalsIgnoreCase("region")){
             arguments.add("shop");
+            arguments.add("arena");
         }
 
-        if (args.length == 4 && args[1].equalsIgnoreCase("region") && args[2].equalsIgnoreCase("Shop")){
+        if (args.length == 4 && args[1].equalsIgnoreCase("region") && args[2].equalsIgnoreCase("shop")){
             arguments.add("1");
             arguments.add("2");
+        }
+
+        if (args.length == 4 && args[1].equalsIgnoreCase("region") && args[2].equalsIgnoreCase("arena")){
+            arguments.add("void");
+            arguments.add("pvp1");
+            arguments.add("pvp2");
         }
 
         return arguments;

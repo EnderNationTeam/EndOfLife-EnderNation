@@ -3,14 +3,17 @@ package de.mxscha.en.endoflife.utils;
 import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.commands.economy.JobsCommand;
 import de.mxscha.en.endoflife.commands.economy.MoneyCommand;
-import de.mxscha.en.endoflife.commands.economy.PayCommand;
 import de.mxscha.en.endoflife.commands.player.*;
 import de.mxscha.en.endoflife.commands.teleport.*;
 import de.mxscha.en.endoflife.commands.world.BuildCommand;
 import de.mxscha.en.endoflife.commands.world.SetupCommand;
+import de.mxscha.en.endoflife.listener.arena.ArenaAreaListener;
+import de.mxscha.en.endoflife.listener.arena.ArenaPvpEntryListener;
+import de.mxscha.en.endoflife.listener.arena.ArenaMovementTeleportListener;
 import de.mxscha.en.endoflife.listener.player.*;
 import de.mxscha.en.endoflife.listener.shop.ShopAreaListener;
 import de.mxscha.en.endoflife.listener.shop.ShopListener;
+import de.mxscha.en.endoflife.listener.world.ArenaSpawnAreaWeatherChangeListener;
 import de.mxscha.en.endoflife.listener.world.SpawnAreaWeatherChangeListener;
 import de.mxscha.en.endoflife.utils.manager.item.inventory.InventoryOpener;
 import de.mxscha.en.endoflife.utils.manager.job.entity.Employer;
@@ -24,6 +27,9 @@ public class Register {
 
     public static void init(EndoflifeCore core) {
         PluginManager pluginManager = Bukkit.getPluginManager();
+        pluginManager.registerEvents(new ArenaAreaListener(), core);
+        pluginManager.registerEvents(new ArenaMovementTeleportListener(), core);
+        pluginManager.registerEvents(new ArenaPvpEntryListener(), core);
         pluginManager.registerEvents(new ShopAreaListener(), core);
         pluginManager.registerEvents(new CrateListener(), core);
         pluginManager.registerEvents(new ChatListener(), core);
@@ -38,6 +44,7 @@ public class Register {
         pluginManager.registerEvents(new RandomTeleport(), core);
         pluginManager.registerEvents(new VanishDamageListener(), core);
         pluginManager.registerEvents(new SpawnAreaWeatherChangeListener(), core);
+        pluginManager.registerEvents(new ArenaSpawnAreaWeatherChangeListener(), core);
         core.getCommand("setup").setExecutor(new SetupCommand());
         core.getCommand("spawn").setExecutor(new SpawnCommand());
         core.getCommand("enderchest").setExecutor(new EnderChestCommand());
