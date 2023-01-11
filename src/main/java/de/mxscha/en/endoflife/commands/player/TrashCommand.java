@@ -13,7 +13,7 @@ public class TrashCommand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player player) {
-            Inventory inventory = Bukkit.createInventory(null, 9*4 /* vielfaches von 9 */, "Mülleimer");;
+            Inventory inventory = Bukkit.createInventory(null, 9*6 /* vielfaches von 9 */, "Mülleimer");;
             player.openInventory(inventory);
             player.playSound(player.getLocation(), Sound.BLOCK_CHEST_OPEN, 1, 1);
         }
