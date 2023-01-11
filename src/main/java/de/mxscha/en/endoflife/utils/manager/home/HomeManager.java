@@ -9,6 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.UUID;
 
+/*
+ * Author: Keksgauner
+ * Time: 09.01.2023
+ */
 public class HomeManager {
 
     private MySQL mySQL;

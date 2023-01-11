@@ -12,6 +12,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
+/*
+ * Author: Keksgauner
+ * Time: 09.01.2023
+ */
 public class ArenaMovementTeleportListener implements Listener {
 
     static Location arenaVoid = null;

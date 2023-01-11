@@ -4,7 +4,6 @@ import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.commands.world.BuildCommand;
 import de.mxscha.en.endoflife.utils.manager.location.ConfigLocationUtil;
 import io.papermc.paper.event.player.PlayerItemFrameChangeEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -16,6 +15,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
+/*
+ * Author: Keksgauner
+ * Time: 09.01.2023
+ */
 public class ArenaAreaListener implements Listener {
 
     @EventHandler

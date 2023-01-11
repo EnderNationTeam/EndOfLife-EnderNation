@@ -5,6 +5,10 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Author: Keksgauner
+ * Time: 09.01.2023
+ */
 public class HomeList {
     private List<Home> list;
 

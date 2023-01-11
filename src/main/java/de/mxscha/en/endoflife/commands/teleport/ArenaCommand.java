@@ -1,6 +1,5 @@
 package de.mxscha.en.endoflife.commands.teleport;
 
-import de.mxscha.en.endoflife.EndoflifeCore;
 import de.mxscha.en.endoflife.utils.manager.chat.Messages;
 import de.mxscha.en.endoflife.utils.manager.location.ConfigLocationUtil;
 import de.mxscha.en.endoflife.utils.manager.teleport.Teleport;
@@ -11,8 +10,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.scheduler.BukkitRunnable;
 
+/*
+ * Writer: Keksgauner
+ * Time: 09.01.2023
+ */
 public class ArenaCommand implements CommandExecutor, Listener {
 
     @Override

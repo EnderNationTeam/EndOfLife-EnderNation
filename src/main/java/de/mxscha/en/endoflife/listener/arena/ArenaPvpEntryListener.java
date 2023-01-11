@@ -8,13 +8,16 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * Author: Keksgauner
+ * Time: 09.01.2023
+ */
 public class ArenaPvpEntryListener implements Listener {
 
     List<Player> list = new ArrayList<>();
