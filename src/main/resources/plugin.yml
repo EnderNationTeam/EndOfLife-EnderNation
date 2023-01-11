@@ -22,6 +22,7 @@ commands:
   tpa:
   tpaccept:
   trade:
+  trash:
   playerinfo:
   head:
   givekey:

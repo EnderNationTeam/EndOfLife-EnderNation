@@ -63,6 +63,7 @@ public class Register {
         core.getCommand("tpa").setExecutor(new TpaCommand());
         core.getCommand("tpaccept").setExecutor(new TpacceptCommand());
         core.getCommand("trade").setExecutor(new TradeCommand());
+        core.getCommand("trash").setExecutor(new TrashCommand());
         core.getCommand("playerinfo").setExecutor(new AdminPlayerInfoCommand());
         core.getCommand("help").setExecutor(new PlayerHelpCommand());
         core.getCommand("head").setExecutor(new GiveHeadCommand());
