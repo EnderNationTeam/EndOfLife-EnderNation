@@ -55,7 +55,12 @@ public class ArenaAreaListener implements Listener {
                 Location arenaPvp1 = new ConfigLocationUtil("ArenaPvp1").loadLocation();
                 Location arenaPvp2 = new ConfigLocationUtil("ArenaPvp2").loadLocation();
                 if (EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), arenaPvp1, arenaPvp2)) {
-                    removeLiquid(Material.FIRE, event.getBlock());
+                    new BukkitRunnable() {
+                        @Override
+                        public void run() {
+                            removeBlockUpper(Material.FIRE, event.getBlock());
+                        }
+                    }.runTaskLater(EndoflifeCore.getInstance(), 20*5);
                 } else {
                     event.setCancelled(true);
                 }
@@ -107,8 +112,8 @@ public class ArenaAreaListener implements Listener {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
-                        removeLiquid(Material.WATER, event.getClickedBlock());
-                        removeLiquid(Material.LAVA, event.getClickedBlock());
+                        removeBlockUpper(Material.WATER, event.getClickedBlock());
+                        removeBlockUpper(Material.LAVA, event.getClickedBlock());
                     }
                 }.runTaskLater(EndoflifeCore.getInstance(), 20*5);
                 return;
@@ -158,7 +163,20 @@ public class ArenaAreaListener implements Listener {
         }
     }
 
-    private void removeLiquid(Material material, Block clickedBlock) {
+    @EventHandler
+    public void onCombine(BlockFormEvent event) {
+        Location arenaSpawn = new ConfigLocationUtil("ArenaSpawn").loadLocation();
+
+        if (event.getBlock().getLocation().getWorld().getName().equals(arenaSpawn.getWorld().getName())) {
+            // This is thrown anytime when something is combined
+            Block block = event.getBlock();
+            if(block.getType().equals(Material.WATER) || block.getType().equals(Material.LAVA)) {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    private void removeBlockUpper(Material material, Block clickedBlock) {
 
         if(clickedBlock == null) {
             return;
