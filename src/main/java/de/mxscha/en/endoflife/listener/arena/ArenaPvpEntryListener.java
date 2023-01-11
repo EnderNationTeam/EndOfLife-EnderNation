@@ -73,7 +73,7 @@ public class ArenaPvpEntryListener implements Listener {
                                     list.remove(player);
                                     runnable.remove(player);
                                 }
-                            }.runTaskLater(EndoflifeCore.getInstance(), 20 * 1);
+                            }.runTaskLater(EndoflifeCore.getInstance(), 20 * 3);
                         }
                     }
                 }
