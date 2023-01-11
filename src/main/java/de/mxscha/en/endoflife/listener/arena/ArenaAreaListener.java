@@ -82,6 +82,9 @@ public class ArenaAreaListener implements Listener {
                 new BukkitRunnable() {
                     @Override
                     public void run() {
+                        if(event.getClickedBlock() != null) {
+                            cancel();
+                        }
                         Location location = event.getClickedBlock().getLocation().add(0, 1, 0);
                         Block block = location.getBlock();
                         if(block.getType().equals(Material.WATER)) {
