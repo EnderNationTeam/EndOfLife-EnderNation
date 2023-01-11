@@ -14,6 +14,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class ArenaAreaListener implements Listener {
 
@@ -78,6 +79,54 @@ public class ArenaAreaListener implements Listener {
 
         if (EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), arenaPvp1, arenaPvp2)) {
             if(!material.equals(Material.EGG) || material.equals(Material.WATER_BUCKET) || material.equals(Material.LAVA_BUCKET) || material.equals(Material.BUCKET)) {
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        Location location = event.getClickedBlock().getLocation().add(0, 1, 0);
+                        Block block = location.getBlock();
+                        if(block.getType().equals(Material.WATER)) {
+                            block.setType(Material.AIR);
+
+                            Location locationPlusX = location.add(1,0,0);
+                            Location locationMinusX = location.add(-1,0,0);
+                            Location locationPlusZ = location.add(0,0,1);
+                            Location locationMinusZ = location.add(0,0,-1);
+                            if(locationPlusX.getBlock().getType().equals(Material.WATER)) {
+                                locationPlusX.getBlock().setType(Material.AIR);
+                            }
+                            if(locationMinusX.getBlock().getType().equals(Material.WATER)) {
+                                locationMinusX.getBlock().setType(Material.AIR);
+                            }
+                            if (locationPlusZ.getBlock().getType().equals(Material.WATER)) {
+                                locationPlusZ.getBlock().setType(Material.AIR);
+                            }
+                            if (locationMinusZ.getBlock().getType().equals(Material.WATER)) {
+                                locationMinusZ.getBlock().setType(Material.AIR);
+                            }
+                        }
+
+                        if(block.getType().equals(Material.LAVA)) {
+                            block.setType(Material.AIR);
+
+                            Location locationPlusX = location.add(1,0,0);
+                            Location locationMinusX = location.add(-1,0,0);
+                            Location locationPlusZ = location.add(0,0,1);
+                            Location locationMinusZ = location.add(0,0,-1);
+                            if(locationPlusX.getBlock().getType().equals(Material.LAVA)) {
+                                locationPlusX.getBlock().setType(Material.AIR);
+                            }
+                            if(locationMinusX.getBlock().getType().equals(Material.LAVA)) {
+                                locationMinusX.getBlock().setType(Material.AIR);
+                            }
+                            if (locationPlusZ.getBlock().getType().equals(Material.LAVA)) {
+                                locationPlusZ.getBlock().setType(Material.AIR);
+                            }
+                            if (locationMinusZ.getBlock().getType().equals(Material.LAVA)) {
+                                locationMinusZ.getBlock().setType(Material.AIR);
+                            }
+                        }
+                    }
+                }.runTaskLater(EndoflifeCore.getInstance(), 20*5);
                 return;
             }
         }
