@@ -28,7 +28,15 @@ public class ArenaAreaListener implements Listener {
 
         if (event.getBlock().getLocation().getWorld().getName().equals(arenaSpawn.getWorld().getName())) {
             if (!BuildCommand.getBuild().contains(player)) {
-                event.setCancelled(true);
+                if(event.getBlock().getType() != Material.FIRE) {
+                    event.setCancelled(true);
+                }
+
+                Location arenaPvp1 = new ConfigLocationUtil("ArenaPvp1").loadLocation();
+                Location arenaPvp2 = new ConfigLocationUtil("ArenaPvp2").loadLocation();
+                if (!EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), arenaPvp1, arenaPvp2)) {
+                    event.setCancelled(true);
+                }
             }
         }
     }
@@ -40,7 +48,17 @@ public class ArenaAreaListener implements Listener {
 
         if (event.getBlock().getLocation().getWorld().getName().equals(arenaSpawn.getWorld().getName())) {
             if (!BuildCommand.getBuild().contains(player)) {
-                event.setCancelled(true);
+                if(event.getBlock().getType() != Material.FIRE) {
+                    event.setCancelled(true);
+                }
+
+                Location arenaPvp1 = new ConfigLocationUtil("ArenaPvp1").loadLocation();
+                Location arenaPvp2 = new ConfigLocationUtil("ArenaPvp2").loadLocation();
+                if (EndoflifeCore.getInstance().getRegionManager().isIn(player.getLocation(), arenaPvp1, arenaPvp2)) {
+                    removeLiquid(Material.FIRE, event.getBlock());
+                } else {
+                    event.setCancelled(true);
+                }
             }
         }
     }

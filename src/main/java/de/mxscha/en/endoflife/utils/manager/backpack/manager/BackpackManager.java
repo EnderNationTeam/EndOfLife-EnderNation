@@ -13,7 +13,7 @@ import java.util.*;
 public class BackpackManager {
 
     private final Map<UUID, Backpack> map;
-    private MySQL mySQL;
+    private final MySQL mySQL;
 
     public BackpackManager() {
         mySQL = EndoflifeCore.getInstance().getMySQL();
