@@ -103,7 +103,7 @@ public final class EndoflifeCore extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        backpackManager.save();
+        backpackManager.saveAll();
         LocationsConfig.save();
         employer.despawn();
         smith.despawn();

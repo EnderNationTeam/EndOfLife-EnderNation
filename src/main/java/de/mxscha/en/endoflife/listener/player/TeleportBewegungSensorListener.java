@@ -18,7 +18,6 @@ public class TeleportBewegungSensorListener implements Listener {
         double toZ = Math.round(event.getTo().getZ() * 10.0) / 10.0;
 
         if (fromZ != toZ && fromX != toX) {
-            //event.getPlayer().sendMessage("§c" + fromZ + " §a" + toZ + " §c" + fromX + " §a" + toX);
             Set<Player> playerSet = Teleport.getInTeleport();
             Player player = event.getPlayer();
             if(playerSet.contains(player)) {

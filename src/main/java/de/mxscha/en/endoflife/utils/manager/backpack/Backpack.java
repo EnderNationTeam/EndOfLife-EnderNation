@@ -3,6 +3,7 @@ package de.mxscha.en.endoflife.utils.manager.backpack;
 import de.mxscha.en.endoflife.utils.Base64;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -11,13 +12,14 @@ public class Backpack {
 
     private final UUID uuid;
     private final Inventory inventory;
+    private BukkitTask task;
 
     public Backpack(UUID uuid, int rows) {
         this.uuid = uuid;
         this.inventory = Bukkit.createInventory(null, 9*rows /* vielfaches von 9 */, "Backpack");
     }
 
-    public Backpack(UUID uuid, String base64, int rows) throws IOException {
+    public Backpack(UUID uuid, String base64, int rows) {
         this.uuid = uuid;
         this.inventory = Bukkit.createInventory(null, 9*rows /* vielfaches von 9 */, "Backpack");
         this.inventory.setContents(Base64.itemStackArrayFromBase64(base64));
@@ -33,6 +35,14 @@ public class Backpack {
 
     public String toBase64() {
         return Base64.itemStackArrayToBase64(inventory.getContents());
+    }
+
+    public void setTask(BukkitTask task) {
+        this.task = task;
+    }
+
+    public BukkitTask getTask() {
+        return task;
     }
 }
 
